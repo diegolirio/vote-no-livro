@@ -2,6 +2,9 @@ package com.diegolirio.votenolivro.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class User extends Person {
 	
 	private String email;

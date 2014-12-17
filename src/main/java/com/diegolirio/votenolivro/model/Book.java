@@ -2,16 +2,26 @@ package com.diegolirio.votenolivro.model;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Book {
 	
+	@Id @GeneratedValue
 	private long id;
 	
 	private String title;
 	
 	private int year;
 	
+	@ManyToOne
 	private Publisher publisher;
 	
+	@ManyToMany(mappedBy="books")
 	private Set<Author> authors; 
 
 	public long getId() {
