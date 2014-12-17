@@ -2,12 +2,20 @@ package com.diegolirio.votenolivro.model;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Voting {
 
+	@Id @GeneratedValue
 	private long id;
 	
 	private String description;
 	
+	@OneToMany(mappedBy="voting")
 	private Set<Vote> votes;
 
 	public long getId() {

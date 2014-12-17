@@ -1,13 +1,23 @@
 package com.diegolirio.votenolivro.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Vote {
 	
+	@Id @GeneratedValue
 	private long id;
 	
+	@ManyToOne
 	private User user;
 	
+	@ManyToOne
 	private Book book;
 	
+	@ManyToOne
 	private Voting voting;
 
 	public long getId() {
