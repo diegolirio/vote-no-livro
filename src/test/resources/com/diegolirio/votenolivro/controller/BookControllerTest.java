@@ -54,4 +54,11 @@ public class BookControllerTest {
 				.andExpect(content().contentType("application/json"));
 	}	
 	
+	@Test
+	public void testDeveBuscarLivroJSONPorID() throws Exception {
+		mockMvc.perform(get("/livro/"+book.getId()+"/json"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType("application/json"));
+	}		
+	
 }

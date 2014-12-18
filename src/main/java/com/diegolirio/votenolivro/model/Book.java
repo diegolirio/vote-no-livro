@@ -22,7 +22,7 @@ public class Book {
 	@ManyToOne
 	private Publisher publisher;
 	
-	@ManyToMany(mappedBy="books", fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Author> authors; 
 	
 	@ManyToOne

@@ -15,29 +15,14 @@
          </section>
 
          <!-- Main content -->
-         <section class="content">
-
-              <!-- Small boxes (Stat box) -->
-              <div class="row" ng-repeat="b in books">
-                  <div class="col-lg-6 col-xs-12">
-                      <!-- small box -->
-                      <div class="small-box bg-aqua">
-                          <div class="inner">
-                              <h3>
-                                  <a href="#/livro/{{b.id}}"><span style="color:white;"> {{b.title}}</span></a>
-                              </h3>
-                              <p> 
-                                  <a href="#/livro/{{b.id}}"><span style="color:white;"> {{b.id}}</span></a>
-                              </p>
-                          </div>
-                          <div class="icon">
-                              <a href="#/livro/{{b.id}}"><i style="color:white;" class="ion ion-bag"></i></a>
-                          </div>
-                          <a href="#/livro/{{b.id}}" class="small-box-footer">
-                              mais informações <i class="fa fa-arrow-circle-right"></i>
-                          </a>
-                      </div>
-                  </div><!-- ./col -->
+         <section class="content"> 
+              <div ng-repeat="b in books">
+                  <div class="col-lg-2">                  	   
+                      <p><img src="{{b.imgUrl}}" class="img-thumbnail img-responsive" title="{{b.title}}" /></p> <!-- width="277" height="400" -->
+					  <a href="#/votacao/{{voting.id}}/livro/{{b.id}}" class="btn btn-success btn-block">
+                      		<span class="text-center" title="Votar {{b.title}}">Votar <i class="fa fa-arrow-circle-right"></i></span>
+                      </a>
+                  </div><!-- ./col --> 
 		     </div>
 		</section>
 

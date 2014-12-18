@@ -21,11 +21,18 @@ public class BookService {
 	}
 
 	public void save(Book book) {
-		this.bookDao.save(book);
+		if(book.getId() == 0) 
+			this.bookDao.save(book);
+		else
+			this.bookDao.update(book);
 	}
 
 	public Book getByTitleAndYearAndPublisherAndEdicao(String title, int year, Publisher publisher, int edicao) {
 		return this.bookDao.getByTitleAndYearAndPublisherAndEdicao(title, year, publisher, edicao);
+	}
+
+	public Book get(long id) {
+		return this.bookDao.get(Book.class, id);
 	}
 
 	

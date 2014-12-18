@@ -5,10 +5,13 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 @Entity
 public class Author extends Person {
 
-	@ManyToMany
+	@JsonBackReference
+	@ManyToMany(mappedBy="authors")
 	private Set<Book> books;
 
 	public Set<Book> getBooks() {

@@ -104,7 +104,7 @@ public class HomeController {
 			aCulpaDasEstrelas.setPublisher(intrinseca);
 			aCulpaDasEstrelas.setEdicao(1);
 			aCulpaDasEstrelas.setVoting(voteNoLivro);
-			aCulpaDasEstrelas.setImgUrl("/votenolivro/static/culpa_das_estrelas.jpg");
+			aCulpaDasEstrelas.setImgUrl("/votenolivro/static/imagesUp/culpa_das_estrelas.jpg");
 			this.bookService.save(aCulpaDasEstrelas);
 		}
 	}
@@ -135,11 +135,11 @@ public class HomeController {
 			oLadoBomDaVida = new Book();
 			oLadoBomDaVida.setTitle("O Lado Bom Da Vida");
 			oLadoBomDaVida.setYear(2013);
-			oLadoBomDaVida.setAuthors(authors);
 			oLadoBomDaVida.setPublisher(intrinseca);
 			oLadoBomDaVida.setEdicao(1);
 			oLadoBomDaVida.setVoting(voteNoLivro);
-			oLadoBomDaVida.setImgUrl("/votenolivro/static/o_lado_bom_da_vida.jpg");
+			oLadoBomDaVida.setImgUrl("/votenolivro/static/imagesUp/o_lado_bom_da_vida.jpg");
+			oLadoBomDaVida.setAuthors(authors);
 			this.bookService.save(oLadoBomDaVida);
 		}
 	}	

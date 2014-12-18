@@ -73,4 +73,11 @@ public class VotingControllerTest {
 				.andExpect(content().contentType("application/json"));
 	}	
 	
+	@Test
+	public void testDeveRetornarPaginaLivroParaComputarVoto() throws Exception {
+		mockMvc.perform(get("/votacao/livro/voto"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("voting/book-vote"));
+	}
+	
 }

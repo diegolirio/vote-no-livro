@@ -9,6 +9,7 @@ $app.config(function($routeProvider, $httpProvider) {
 		// voting 
 		.when('/votacao/s',    { controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
 		.when('/votacao/:id',  { controller: votingController, templateUrl: SERVER_URL + '/votacao/livros' })
+		.when('/votacao/:id/livro/:bookId', { controller: votingController, templateUrl: SERVER_URL + '/votacao/livro/voto' })
 		.when('/votacao/nova', { controller: votingController, templateUrl: SERVER_URL + '/votacao/nova' })
 		.otherwise({redirectTo : '/'});
 	

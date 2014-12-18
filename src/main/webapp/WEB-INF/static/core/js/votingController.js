@@ -23,4 +23,10 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		});		
 	};	
 	
+	$scope.getBook = function() {
+		$http.get($scope.server('/livro/'+$routeParams.bookId+'/json')).success(function(data) {
+			$scope.book = data;
+		});		
+	};
+	
 };
