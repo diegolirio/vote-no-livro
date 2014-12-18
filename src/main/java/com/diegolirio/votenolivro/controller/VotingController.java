@@ -25,6 +25,7 @@ public class VotingController {
 	public ModelAndView pageListVoting() {
 		//ModelAndView mv = new ModelAndView("_base");
 		//mv.addObject("content_import", "voting/list");
+		System.out.println("VOTING...");
 		return new ModelAndView("voting/list");
 	}
 	

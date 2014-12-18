@@ -28,7 +28,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="${pageContext.request.contextPath}">
+                            <a href="#/votacao/s">
                                 <i class="fa fa-globe"></i> <span>Votações</span> <!-- <small class="badge pull-right bg-green">novo</small> -->
                             </a>
                         </li>

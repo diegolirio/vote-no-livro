@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 @Entity
 public class Voting {
 
@@ -15,6 +17,7 @@ public class Voting {
 	
 	private String description;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="voting")
 	private Set<Vote> votes;
 	

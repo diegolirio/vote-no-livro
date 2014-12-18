@@ -43,6 +43,7 @@
 			 
 			<!-- Right side column. Contains the navbar and content of the page -->
 			<%-- 			<jsp:include page="${content_import}.jsp"></jsp:include>  --%>
+			
 			<div ng-view></div>
 			 
         </div><!-- ./wrapper -->

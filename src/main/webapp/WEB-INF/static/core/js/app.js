@@ -1,10 +1,11 @@
 $app = angular.module('app', []);
 
-SERVER_URL = "/vote-no-livro";
+SERVER_URL = "/votenolivro";
 
 $app.config(function($routeProvider, $httpProvider) {
 
 	$routeProvider
+		.when('/', { controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
 		// voting 
 		.when('/votacao/s', { controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
 		.otherwise({redirectTo : '/'});
