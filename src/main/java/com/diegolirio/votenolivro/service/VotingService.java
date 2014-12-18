@@ -17,5 +17,13 @@ public class VotingService {
 	public List<Voting> getList() {
 		return this.votingDao.getList(Voting.class);
 	}
+
+	public void save(Voting voting) {
+		this.votingDao.save(voting);
+	}
+
+	public Voting getByDescription(String description) {
+		return this.votingDao.getByDescription(description);
+	}
 	
 }

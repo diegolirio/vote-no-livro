@@ -23,6 +23,9 @@ public class Book {
 	
 	@ManyToMany(mappedBy="books")
 	private Set<Author> authors; 
+	
+	@ManyToOne
+	private Voting voting;
 
 	public long getId() {
 		return id;
@@ -63,8 +66,15 @@ public class Book {
 	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
 	}
-	
-	
+
+	public Voting getVoting() {
+		return voting;
+	}
+
+	public void setVoting(Voting voting) {
+		this.voting = voting;
+	}
+		
 	
 
 }

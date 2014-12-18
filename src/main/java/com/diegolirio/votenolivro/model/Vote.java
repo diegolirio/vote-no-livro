@@ -17,9 +17,6 @@ public class Vote {
 	@ManyToOne
 	private Book book;
 	
-	@ManyToOne
-	private Voting voting;
-
 	public long getId() {
 		return id;
 	}
@@ -42,17 +39,6 @@ public class Vote {
 
 	public void setBook(Book book) {
 		this.book = book;
-	}
-
-	public Voting getVoting() {
-		return voting;
-	}
-
-	public void setVoting(Voting voting) {
-		this.voting = voting;
-	}
-	
-	
-	
+	}	
 
 }

@@ -19,7 +19,7 @@ public class Voting {
 	
 	@JsonBackReference
 	@OneToMany(mappedBy="voting")
-	private Set<Vote> votes;
+	private Set<Book> books;
 	
 	private boolean finalized = false;
 
@@ -39,12 +39,12 @@ public class Voting {
 		this.description = description;
 	}
 
-	public Set<Vote> getVotes() {
-		return votes;
+	public Set<Book> getBooks() {
+		return books;
 	}
 
-	public void setVotes(Set<Vote> votes) {
-		this.votes = votes;
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
 
 	public boolean isFinalized() {
