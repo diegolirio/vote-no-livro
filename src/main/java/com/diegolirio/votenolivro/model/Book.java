@@ -3,6 +3,7 @@ package com.diegolirio.votenolivro.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -21,11 +22,15 @@ public class Book {
 	@ManyToOne
 	private Publisher publisher;
 	
-	@ManyToMany(mappedBy="books")
+	@ManyToMany(mappedBy="books", fetch=FetchType.EAGER)
 	private Set<Author> authors; 
 	
 	@ManyToOne
 	private Voting voting;
+
+	private int edicao;
+
+	private String imgUrl;
 
 	public long getId() {
 		return id;
@@ -73,6 +78,22 @@ public class Book {
 
 	public void setVoting(Voting voting) {
 		this.voting = voting;
+	}
+
+	public int getEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(int edicao) {
+		this.edicao = edicao;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 		
 	

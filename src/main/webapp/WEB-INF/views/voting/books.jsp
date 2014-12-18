@@ -1,14 +1,16 @@
-<aside class="right-side" ng-init="loadBooks()">
+<div ng-init="loadBooks()" >
+
+	<aside class="right-side" >
 
          <!-- Content Header (Page header) -->
          <section class="content-header">
              <h1>
-                 Votação <small>{{voting.descripton}}</small>
+                 Votação <small> {{voting.description}}</small>
              </h1>
              <ol class="breadcrumb">
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Votações</a></li>
-                 <li class="active">Livros</li>
+                 <li class="active">Votação/Livros</li>
              </ol>
          </section>
 
@@ -39,4 +41,6 @@
 		     </div>
 		</section>
 
-</aside>
+	</aside>
+
+</div>
