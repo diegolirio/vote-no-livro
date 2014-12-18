@@ -43,6 +43,7 @@ public class VotingControllerTest {
 		mockMvc.perform(get("/votacao/s"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("_base"));
+				//.andExpect(model().attribute("content_import", "voting/list"));
 	}
 
 	@Test

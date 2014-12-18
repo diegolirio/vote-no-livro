@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html ng-app="app">
     <head>
         <meta charset="UTF-8">
         <title>Vote no Livro</title>
@@ -42,12 +42,14 @@
 			<jsp:include page="_menu_left.jsp"></jsp:include>
 			 
 			<!-- Right side column. Contains the navbar and content of the page -->
-<%-- 			<jsp:include page="${content_import}.jsp"></jsp:include>  --%>
+			<%-- 			<jsp:include page="${content_import}.jsp"></jsp:include>  --%>
+			<div ng-view></div>
 			 
         </div><!-- ./wrapper -->
 
-        <!-- add new calendar event modal -->
-
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/js/app.js"></script>
+		<script src="${pageContext.request.contextPath}/static/core/js/votingController.js"></script>
 
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
