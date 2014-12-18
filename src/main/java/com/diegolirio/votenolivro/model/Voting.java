@@ -17,6 +17,8 @@ public class Voting {
 	
 	@OneToMany(mappedBy="voting")
 	private Set<Vote> votes;
+	
+	private boolean finalized = false;
 
 	public long getId() {
 		return id;
@@ -40,6 +42,14 @@ public class Voting {
 
 	public void setVotes(Set<Vote> votes) {
 		this.votes = votes;
+	}
+
+	public boolean isFinalized() {
+		return finalized;
+	}
+
+	public void setFinalized(boolean finalized) {
+		this.finalized = finalized;
 	}
 	
 	
