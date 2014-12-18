@@ -10,7 +10,7 @@ public class VotingController {
 
 	@RequestMapping(value="/s", method=RequestMethod.GET)
 	public String pageListVoting() {
-		return "voting/list";
+		return "_base";
 	}
 	
 }
