@@ -8,4 +8,17 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		});
 	};
  
+	$scope.getVoting = function() {
+		$http.get($scope.server('/votacao/get/'+$routeParams.id+'/json')).success(function(data) {
+			$scope.voting = data;
+		});		
+	};
+	
+	$scope.loadBooks = function() {
+		$scope.getVoting();
+		$http.get($scope.server('/livro/get/lista/por/votacao/'+$routeParams.id+'/json')).success(function(data) {
+			$scope.books = data;
+		});		
+	};	
+	
 };

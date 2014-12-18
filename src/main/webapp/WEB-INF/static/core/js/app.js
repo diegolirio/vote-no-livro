@@ -8,6 +8,8 @@ $app.config(function($routeProvider, $httpProvider) {
 		.when('/', { controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
 		// voting 
 		.when('/votacao/s', { controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
+		.when('/votacao/:id', { controller: votingController, templateUrl: SERVER_URL + '/votacao/livros' })
+		.when('/votacao/nova', { controller: votingController, templateUrl: SERVER_URL + '/votacao/nova' })
 		.otherwise({redirectTo : '/'});
 	
 	$httpProvider.responseInterceptors.push(function($q,$rootScope) {

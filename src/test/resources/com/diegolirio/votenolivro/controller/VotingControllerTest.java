@@ -17,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.diegolirio.votenolivro.model.Voting;
 import com.diegolirio.votenolivro.service.VotingService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,17 +33,22 @@ public class VotingControllerTest {
 	@Mock
 	private VotingService votingService;
 
+	private Voting voting;
+
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+		
+		voting = new Voting();
+		voting.setId(1l);		
 	}
 
 	@Test
 	public void testDeveRetornarPaginaDeVotacoes() throws Exception {
 		mockMvc.perform(get("/votacao/s"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("_base"));
+				.andExpect(view().name("voting/list"));
 				//.andExpect(model().attribute("content_import", "voting/list"));
 	}
 
@@ -52,5 +58,19 @@ public class VotingControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"));
 	}
+	
+	@Test
+	public void testDeveRetornarPaginaDeLivrosParaVotacao() throws Exception {
+		mockMvc.perform(get("/votacao/livros"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("voting/books"));		
+	}
 
+	@Test
+	public void testDeveRetornarVotacaoJSONPorID() throws Exception {
+		mockMvc.perform(get("/votacao/get/"+voting.getId()+"/json"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType("application/json"));
+	}	
+	
 }

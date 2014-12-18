@@ -3,7 +3,6 @@ package com.diegolirio.votenolivro.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,58 +16,40 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.diegolirio.votenolivro.model.Book;
 import com.diegolirio.votenolivro.model.Voting;
-import com.diegolirio.votenolivro.service.VotingService;
+import com.diegolirio.votenolivro.service.BookService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath*:spring-context.xml" })
-public class VotingControllerTest {
+public class BookControllerTest {
 
 	@InjectMocks
-	private VotingController controller;
+	private BookController controller;
 
 	private MockMvc mockMvc;
 	
 	@Mock
-	private VotingService votingService;
+	private BookService bookService;
 
-	private Voting voting;
+	private Book book;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 		
-		voting = new Voting();
-		voting.setId(1l);		
-	}
-
-	@Test
-	public void testDeveRetornarPaginaDeVotacoes() throws Exception {
-		mockMvc.perform(get("/votacao/s"))
-				.andExpect(status().isOk())
-				.andExpect(view().name("voting/list"));
-				//.andExpect(model().attribute("content_import", "voting/list"));
-	}
-
-	@Test
-	public void testDeveBuscarVotacoesJSON() throws Exception {
-		mockMvc.perform(get("/votacao/get/list/json"))
-				.andExpect(status().isOk())
-				.andExpect(content().contentType("application/json"));
-	}
+		Voting voting = new Voting();
+		voting.setId(1l); 
+		book = new Book();
+		book.setId(1l);		
+		book.setVoting(voting);
+	}	
 	
 	@Test
-	public void testDeveRetornarPaginaDeLivrosParaVotacao() throws Exception {
-		mockMvc.perform(get("/votacao/livros"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("voting/books"));		
-	}
-
-	@Test
-	public void testDeveRetornarVotacaoJSONPorID() throws Exception {
-		mockMvc.perform(get("/votacao/get/"+voting.getId()+"/json"))
+	public void testDeveBuscarLivrosJSONPorVotacao() throws Exception {
+		mockMvc.perform(get("/livro/get/lista/por/votacao/"+book.getVoting().getId()+"/json"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"));
 	}	

@@ -49,6 +49,10 @@ public class HomeController {
 			voting.setFinalized(false);
 			this.votingService.save(voting);
 		}
+		
+		//Book book = 
+		
+		
 		return "redirect:/";
 	}
 	

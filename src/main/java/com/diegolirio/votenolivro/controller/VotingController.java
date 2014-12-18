@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,9 +24,6 @@ public class VotingController {
 
 	@RequestMapping(value="/s", method=RequestMethod.GET)
 	public ModelAndView pageListVoting() {
-		//ModelAndView mv = new ModelAndView("_base");
-		//mv.addObject("content_import", "voting/list");
-		System.out.println("VOTING...");
 		return new ModelAndView("voting/list");
 	}
 	
@@ -39,5 +37,22 @@ public class VotingController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
 	}
+	
+	@RequestMapping(value="/get/{id}/json", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> get(@PathVariable("id") long id) {
+		try {
+			Voting voting = this.votingService.get(id);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(voting), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		} 
+	}	
+	
+	
+	@RequestMapping(value="/livros", method=RequestMethod.GET)
+	public String pageBooksVoting() {
+		return "voting/books";
+	}	
 	
 }

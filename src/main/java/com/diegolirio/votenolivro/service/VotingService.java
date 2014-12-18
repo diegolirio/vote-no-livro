@@ -25,5 +25,9 @@ public class VotingService {
 	public Voting getByDescription(String description) {
 		return this.votingDao.getByDescription(description);
 	}
+
+	public Voting get(long id) {
+		return this.votingDao.get(Voting.class, id);
+	}
 	
 }

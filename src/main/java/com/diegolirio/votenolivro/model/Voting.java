@@ -23,6 +23,12 @@ public class Voting {
 	
 	private boolean finalized = false;
 
+	public Voting() {}
+	
+	public Voting(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	}
