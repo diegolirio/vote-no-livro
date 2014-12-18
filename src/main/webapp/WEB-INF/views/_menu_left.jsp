@@ -29,9 +29,10 @@
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="${pageContext.request.contextPath}">
-                                <i class="fa fa-trophy"></i> <span>Campeonatos</span> <small class="badge pull-right bg-green">novo</small>
+                                <i class="fa fa-globe"></i> <span>Votações</span> <!-- <small class="badge pull-right bg-green">novo</small> -->
                             </a>
                         </li>
+                        <!-- 
                         <li>
                             <a href="pages/widgets.html">
                                 <i class="fa fa-table"></i> <span>Classificação</span>
@@ -57,6 +58,7 @@
                                 <i class="fa fa-bar-chart-o"></i> <span>Graficos</span>
                             </a>
                         </li>
+                         -->
                     </ul>
                 </section>
                 <!-- /.sidebar -->
