@@ -15,9 +15,11 @@ import com.diegolirio.votenolivro.model.Author;
 import com.diegolirio.votenolivro.model.Book;
 import com.diegolirio.votenolivro.model.Publisher;
 import com.diegolirio.votenolivro.model.Voting;
+import com.diegolirio.votenolivro.model.VotingBook;
 import com.diegolirio.votenolivro.service.AuthorService;
 import com.diegolirio.votenolivro.service.BookService;
 import com.diegolirio.votenolivro.service.PublisherService;
+import com.diegolirio.votenolivro.service.VotingBookService;
 import com.diegolirio.votenolivro.service.VotingService;
 
 /**
@@ -39,6 +41,9 @@ public class HomeController {
 
 	@Autowired
 	private BookService bookService;
+
+	@Autowired
+	private VotingBookService votingBookService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -103,9 +108,16 @@ public class HomeController {
 			aCulpaDasEstrelas.setAuthors(authors);
 			aCulpaDasEstrelas.setPublisher(intrinseca);
 			aCulpaDasEstrelas.setEdicao(1);
-			aCulpaDasEstrelas.setVoting(voteNoLivro);
 			aCulpaDasEstrelas.setImgUrl("/votenolivro/static/imagesUp/culpa_das_estrelas.jpg");
 			this.bookService.save(aCulpaDasEstrelas);
+		}
+		
+		VotingBook voteNoLivroaCulpaDasEstrelas = this.votingBookService.get(voteNoLivro, aCulpaDasEstrelas);
+		if(voteNoLivroaCulpaDasEstrelas == null) {
+			voteNoLivroaCulpaDasEstrelas = new VotingBook();
+			voteNoLivroaCulpaDasEstrelas.setBook(aCulpaDasEstrelas);
+			voteNoLivroaCulpaDasEstrelas.setVoting(voteNoLivro);
+			this.votingBookService.save(voteNoLivroaCulpaDasEstrelas);
 		}
 	}
 	
@@ -137,11 +149,18 @@ public class HomeController {
 			oLadoBomDaVida.setYear(2013);
 			oLadoBomDaVida.setPublisher(intrinseca);
 			oLadoBomDaVida.setEdicao(1);
-			oLadoBomDaVida.setVoting(voteNoLivro);
 			oLadoBomDaVida.setImgUrl("/votenolivro/static/imagesUp/o_lado_bom_da_vida.jpg");
 			oLadoBomDaVida.setAuthors(authors);
 			this.bookService.save(oLadoBomDaVida);
 		}
+		
+		VotingBook voteNoLivrooLadoBomDaVida = this.votingBookService.get(voteNoLivro, oLadoBomDaVida);
+		if(voteNoLivrooLadoBomDaVida == null) {
+			voteNoLivrooLadoBomDaVida = new VotingBook();
+			voteNoLivrooLadoBomDaVida.setBook(oLadoBomDaVida);
+			voteNoLivrooLadoBomDaVida.setVoting(voteNoLivro);
+			this.votingBookService.save(voteNoLivrooLadoBomDaVida);
+		}		
 	}	
 	
 	

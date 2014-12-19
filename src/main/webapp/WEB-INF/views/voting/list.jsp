@@ -23,16 +23,16 @@
                       <div class="small-box bg-aqua">
                           <div class="inner">
                               <h3>
-                                  <a href="#/votacao/{{v.id}}"><span style="color:white;"> {{v.description}}</span></a>
+                                  <a href="#/votacao_livro/lista-de-livro/votacao/{{v.id}}"><span style="color:white;"> {{v.description}}</span></a>
                               </h3>
                               <p> 
-                                  <a href="#/votacao/{{v.id}}"><span style="color:white;"> {{v.id}}</span></a>
+                                  <a href="#/votacao_livro/lista-de-livro/votacao/{{v.id}}"><span style="color:white;"> {{v.id}}</span></a>
                               </p>
                           </div>
                           <div class="icon">
-                              <a href="#/votacao/{{v.id}}"><i style="color:white;" class="ion ion-bag"></i></a>
+                              <a href="#/votacao_livro/lista-de-livro/votacao/{{v.id}}"><i style="color:white;" class="ion ion-bag"></i></a>
                           </div>
-                          <a href="#/votacao/{{v.id}}" class="small-box-footer">
+                          <a href="#/votacao_livro/lista-de-livro/votacao/{{v.id}}" class="small-box-footer">
                               mais informações <i class="fa fa-arrow-circle-right"></i>
                           </a>
                       </div>

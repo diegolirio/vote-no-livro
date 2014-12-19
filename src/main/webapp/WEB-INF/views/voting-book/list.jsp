@@ -1,8 +1,7 @@
-<div ng-init="loadBooks()" >
+<div ng-init="getVotingBooksByVoting()" >
 
 	<aside class="right-side" >
 
-         <!-- Content Header (Page header) -->
          <section class="content-header">
              <h1>
                  Votação <small> {{voting.description}}</small>
@@ -14,15 +13,14 @@
              </ol>
          </section>
 
-         <!-- Main content -->
          <section class="content"> 
-              <div ng-repeat="b in books">
+              <div ng-repeat="vb in votingBooks">
                   <div class="col-lg-2">                  	   
-                      <p><img src="{{b.imgUrl}}" class="img-thumbnail img-responsive" title="{{b.title}}" /></p> <!-- width="277" height="400" -->
-					  <a href="#/votacao/{{voting.id}}/livro/{{b.id}}" class="btn btn-success btn-block">
-                      		<span class="text-center" title="Votar {{b.title}}">Votar <i class="fa fa-arrow-circle-right"></i></span>
+                      <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
+					  <a href="#/votacao_livro/{{vb.id}}" class="btn btn-success btn-block">
+                      		<span class="text-center" title="Votar {{vb.book.title}}">Votar <i class="fa fa-arrow-circle-right"></i></span>
                       </a>
-                  </div><!-- ./col --> 
+                  </div>
 		     </div>
 		</section>
 

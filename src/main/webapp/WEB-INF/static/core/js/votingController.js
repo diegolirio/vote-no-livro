@@ -2,8 +2,7 @@
 
 function votingController($scope, $location, $window, $routeParams, $http) {
 
-	$scope.voting = {"id":1,"description":"Vote no Livro","finalized":false};
-	
+	// Voting
 	$scope.loadVotings = function() {
 		$http.get($scope.server('/votacao/get/list/json')).success(function(data) {
 			$scope.votings = data;
@@ -16,15 +15,23 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		});		
 	};
 	
-	$scope.loadBooks = function() {
+	// VotingBook
+	$scope.getVotingBooksByVoting = function() {
 		//$scope.getVoting(); 
-		$http.get($scope.server('/livro/get/lista/por/votacao/'+$routeParams.id+'/json')).success(function(data) {
-			$scope.books = data;
+		$http.get($scope.server('/votacao_livro/get/lista/por/votacao/'+$routeParams.votingId+'/json')).success(function(data) {
+			$scope.votingBooks = data;
 		});		
 	};	
 	
-	$scope.getBook = function() {
-		$http.get($scope.server('/livro/'+$routeParams.bookId+'/json')).success(function(data) {
+	$scope.getVotingBookById = function() {
+		$http.get($scope.server('/votacao_livro/'+$routeParams.id+'/json')).success(function(data) {
+			$scope.votingBook = data;
+		});		
+	};	
+	
+	// Book
+	$scope.getBookById = function() {
+		$http.get($scope.server('/livro/'+$routeParams.id+'/json')).success(function(data) {
 			$scope.book = data;
 		});		
 	};

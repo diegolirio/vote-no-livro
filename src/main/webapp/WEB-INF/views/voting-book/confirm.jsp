@@ -1,11 +1,11 @@
-<div ng-init="getBook()" >
+<div ng-init="getVotingBookById()" >
 
 	<aside class="right-side" >
 
          <!-- Content Header (Page header) -->
          <section class="content-header">
              <h1>
-                 Votação <small> {{voting.description}}</small>
+                 Votação <small> {{votingBook.voting.description}}</small>
              </h1>
              <ol class="breadcrumb">
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -18,16 +18,16 @@
          <!-- Main content -->
          <section class="content"> 
              <div class="col-lg-4">                  	   
-                  <img src="{{book.imgUrl}}" class="img-thumbnail img-responsive" />
+                  <img src="{{votingBook.book.imgUrl}}" class="img-thumbnail img-responsive" />
              </div>
              <div class="col-lg-6">
              	<div class="row">
-	             	<h1>{{book.title}}</h1>
+	             	<h1>{{votingBook.book.title}}</h1>
 	             	<p>
-		             	<span ng-repeat="author in book.authors">
+		             	<span ng-repeat="author in votingBook.book.authors">
 		             		{{author.name}}, 
 		             	</span>
-		             	<span >{{book.year}}, editora {{book.publisher.name}}</span>
+		             	<span >{{votingBook.book.year}}, editora {{votingBook.book.publisher.name}}</span>
 	             	</p>
 				</div>           
 				<br/><br/><br/> 

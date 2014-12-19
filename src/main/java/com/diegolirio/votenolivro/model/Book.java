@@ -24,9 +24,6 @@ public class Book {
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Author> authors; 
-	
-	@ManyToOne
-	private Voting voting;
 
 	private int edicao;
 
@@ -70,14 +67,6 @@ public class Book {
 
 	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
-	}
-
-	public Voting getVoting() {
-		return voting;
-	}
-
-	public void setVoting(Voting voting) {
-		this.voting = voting;
 	}
 
 	public int getEdicao() {

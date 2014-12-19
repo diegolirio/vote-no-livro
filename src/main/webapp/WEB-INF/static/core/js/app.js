@@ -5,12 +5,19 @@ SERVER_URL = "/votenolivro";
 $app.config(function($routeProvider, $httpProvider) {
 
 	$routeProvider
+		// home
 		.when('/', { controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
 		// voting 
-		.when('/votacao/s',    { controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
-		.when('/votacao/:id',  { controller: votingController, templateUrl: SERVER_URL + '/votacao/livros' })
-		.when('/votacao/:id/livro/:bookId', { controller: votingController, templateUrl: SERVER_URL + '/votacao/livro/voto' })
-		.when('/votacao/nova', { controller: votingController, templateUrl: SERVER_URL + '/votacao/nova' })
+		.when('/votacao/s',    
+				{ controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
+		.when('/votacao/nova', 
+				{ controller: votingController, templateUrl: SERVER_URL + '/votacao/nova' })
+		// votingBook 
+		.when('/votacao_livro/lista-de-livro/votacao/:votingId',  
+				{ controller: votingController, templateUrl: SERVER_URL + '/votacao_livro/lista' })
+		.when('/votacao_livro/:id',                
+				{ controller: votingController, templateUrl: SERVER_URL + '/votacao_livro/confirmar' })
+		// not found
 		.otherwise({redirectTo : '/'});
 	
 	$httpProvider.responseInterceptors.push(function($q,$rootScope) {

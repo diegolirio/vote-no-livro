@@ -49,15 +49,4 @@ public class VotingController {
 		} 
 	}	
 	
-	
-	@RequestMapping(value="/livros", method=RequestMethod.GET)
-	public String pageBooksVoting() {
-		return "voting/books";
-	}	
-	
-	@RequestMapping(value="/livro/voto", method=RequestMethod.GET) 
-	public String pageBookVote() {
-		return "voting/book-vote";
-	}
-	
 }

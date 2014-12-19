@@ -34,24 +34,17 @@ public class BookControllerTest {
 	private BookService bookService;
 
 	private Book book;
+	private Voting voting;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();		
 		
-		Voting voting = new Voting();
+		voting = new Voting();
 		voting.setId(1l); 
 		book = new Book();
 		book.setId(1l);		
-		book.setVoting(voting);
-	}	
-	
-	@Test
-	public void testDeveBuscarLivrosJSONPorVotacao() throws Exception {
-		mockMvc.perform(get("/livro/get/lista/por/votacao/"+book.getVoting().getId()+"/json"))
-				.andExpect(status().isOk())
-				.andExpect(content().contentType("application/json"));
 	}	
 	
 	@Test
