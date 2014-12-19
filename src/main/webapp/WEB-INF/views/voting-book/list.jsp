@@ -1,4 +1,4 @@
-<div ng-init="getVotingBooksByVoting()" >
+<div ng-init="loadVotingBookList()" >
 
 	<aside class="right-side" >
 

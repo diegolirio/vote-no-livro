@@ -9,16 +9,25 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		});
 	};
  
-	$scope.getVoting = function() {
-		$http.get($scope.server('/votacao/get/'+$routeParams.id+'/json')).success(function(data) {
+	$scope.getVoting = function(id) {
+		$http.get($scope.server('/votacao/get/'+id+'/json')).success(function(data) {
 			$scope.voting = data;  
 		});		
 	};
 	
-	// VotingBook
-	$scope.getVotingBooksByVoting = function() {
-		//$scope.getVoting(); 
-		$http.get($scope.server('/votacao_livro/get/lista/por/votacao/'+$routeParams.votingId+'/json')).success(function(data) {
+	// VotingBook	
+	$scope.loadVotingBookList = function() {
+		$scope.getVotingBooksByVoting($routeParams.votingId);
+		$scope.getVoting($routeParams.votingId);
+	};
+	
+	$scope.loadConfirm = function() {
+		$scope.confirmedVote = false;
+		$scope.getVotingBookById($routeParams.votingId);
+	};
+	
+	$scope.getVotingBooksByVoting = function(id) {
+		$http.get($scope.server('/votacao_livro/get/lista/por/votacao/'+id+'/json')).success(function(data) {
 			$scope.votingBooks = data;
 		});		
 	};	
@@ -33,6 +42,15 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 	$scope.getBookById = function() {
 		$http.get($scope.server('/livro/'+$routeParams.id+'/json')).success(function(data) {
 			$scope.book = data;
+		});		
+	};
+	
+	// Vote
+	$scope.computeVote = function() {		
+		$scope.vote.votingBook = $scope.votingBook;		
+		$http.post($scope.server("/voto/salvar"), $scope.vote).success(function(data) {
+			$scope.confirmedVote = true;
+			$scope.getVotingBooksByVoting($scope.vote.votingBook.voting.id);
 		});		
 	};
 	

@@ -7,6 +7,7 @@
                  <small>'s</small>
                  &nbsp; <a href="#/votacao/nova" class="btn btn-success btn-sm">Criar Nova Votação</a>
              </h1>
+             
              <ol class="breadcrumb">
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
                  <li class="active">Votações</li>

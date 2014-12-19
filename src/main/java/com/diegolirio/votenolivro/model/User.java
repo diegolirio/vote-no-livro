@@ -2,17 +2,20 @@ package com.diegolirio.votenolivro.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class User extends Person {
 	
+	@Column(unique=true)
 	private String email;
 	
 	private String nickname;
 	
 	private String password;
 	
+	@Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date registrationDate;
 
 	public String getEmail() {

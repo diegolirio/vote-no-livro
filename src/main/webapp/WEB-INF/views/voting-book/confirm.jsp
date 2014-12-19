@@ -1,4 +1,4 @@
-<div ng-init="getVotingBookById()" >
+<div ng-init="loadConfirm()">
 
 	<aside class="right-side" >
 
@@ -11,12 +11,12 @@
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Votações</a></li>
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Votação/Livros</a></li>
-                 <li class="active">Votar</li>
+                 <li class="active">Votar</li> 
              </ol>
          </section>
 
          <!-- Main content -->
-         <section class="content"> 
+         <section class="content" ng-show="!confirmedVote"> 
              <div class="col-lg-4">              
                   <img src="{{votingBook.book.imgUrl}}" class="img-thumbnail img-responsive" />
              </div>
@@ -37,10 +37,12 @@
 				<div class="row">  	
 	             	<form ng-submit="computeVote()" class="form-horizontal" > 
 	             		
+	             		<input type="hidden" ng-model="vote.votingBook.id" value="{{votingBook.id}}"/>
+	             		
 						<div class="control-group">
-							<div class="controls" >
-								<label>Digite seu Email Para computar o Voto</label>
-								<input type="email" ng-model="user.email" class="form-control" required placeholder="Email"/>
+							<div class="controls" > 
+								<label>Digite seu Email Para computar o Voto</label> 
+								<input type="email" ng-model="vote.user.email" class="form-control" required placeholder="Email" name="email"/>
 							</div>
 						</div>	             
 						<br/>
@@ -50,7 +52,28 @@
 		        </div>
 		     </div>
 		</section>
+		
+		<section class="content" ng-show="confirmedVote"> 
+            <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
+		  		<i class="fa fa-reply"></i>  Voltar 
+            </a>             		
+			<h1 class="text-danger">
+				Seu voto foi computado! 
+				<small> <a href="#"> Complete seu cadastro...</a></small> 
+			</h1>
+			
+	        <section class="content"> 
+	              <div ng-repeat="vb in votingBooks">
+	                  <div class="col-lg-2">                  	   
+	                      <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
+						  100%
+	                  </div>
+			     </div>
+			</section>			
+			
+		</section>
 
 	</aside>
 
 </div>
+

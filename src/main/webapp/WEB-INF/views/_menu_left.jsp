@@ -11,7 +11,6 @@
                         </div>
                         <div class="pull-left info">
                             <p>Olá, Jane</p>
-
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -21,7 +20,7 @@
                             <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
                             <span class="input-group-btn">
                                 <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
+                            </span> 
                         </div>
                     </form>
                     <!-- /.search form -->

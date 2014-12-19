@@ -95,7 +95,7 @@ public class HomeController {
 		Publisher intrinseca = this.publisherService.getByName("Intrínseca");
 		if(intrinseca == null) {
 			intrinseca = new Publisher();
-			intrinseca.setName("Intrínseca");
+			intrinseca.setName("Intrinseca");
 			this.publisherService.save(intrinseca);
 		}
 		
@@ -137,7 +137,7 @@ public class HomeController {
 		Publisher intrinseca = this.publisherService.getByName("Intrínseca");
 		if(intrinseca == null) {
 			intrinseca = new Publisher();
-			intrinseca.setName("Intrínseca");
+			intrinseca.setName("Intrinseca");
 			this.publisherService.save(intrinseca);
 		}
 		
