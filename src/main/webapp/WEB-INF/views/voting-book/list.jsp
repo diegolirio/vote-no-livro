@@ -17,8 +17,8 @@
               <div ng-repeat="vb in votingBooks">
                   <div class="col-lg-2">                  	   
                       <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
-					  <a href="#/votacao_livro/{{vb.id}}" class="btn btn-success btn-block">
-                      		<span class="text-center" title="Votar {{vb.book.title}}">Votar <i class="fa fa-arrow-circle-right"></i></span>
+					  <a href="#/votacao_livro/{{vb.id}}" class="btn btn-success btn-block"> 
+					  	<i class="glyphicon glyphicon-ok"></i>  Votar 
                       </a>
                   </div>
 		     </div>
