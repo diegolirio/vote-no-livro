@@ -55,7 +55,7 @@
 		
 		<section class="content" ng-show="confirmedVote"> 
             <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
-		  		<i class="fa fa-reply"></i>  Voltar 
+		  		<i class="fa fa-reply"></i>  Votar novamente 
             </a>             		
 			<h1 class="text-danger">
 				Seu voto foi computado! 
@@ -66,7 +66,10 @@
 	              <div ng-repeat="vb in votingBooks">
 	                  <div class="col-lg-2">                  	   
 	                      <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
-						  100%
+					       <p class="text-center">
+					       		{{vb.countVotes * 100 / vb.voting.countTotal | number:0 }} % 
+					       		<span class="text-muted">({{vb.countVotes}})</span>
+					       </p>
 	                  </div>
 			     </div>
 			</section>			

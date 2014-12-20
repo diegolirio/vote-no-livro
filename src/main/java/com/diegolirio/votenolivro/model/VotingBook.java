@@ -17,6 +17,8 @@ public class VotingBook {
 	@ManyToOne
 	private Book book;
 
+	private long countVotes;
+
 	public long getId() {
 		return id;
 	}
@@ -39,6 +41,14 @@ public class VotingBook {
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public long getCountVotes() {
+		return countVotes;
+	}
+
+	public void setCountVotes(long countVotes) {
+		this.countVotes = countVotes;
 	}
 	
 	

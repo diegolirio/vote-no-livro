@@ -30,6 +30,12 @@ public class VotingBookDao extends AbstractGenericDao<VotingBook> {
 		Query query = super.manager.createQuery("Select vb from VotingBook vb where vb.voting.id = :votingId");
 		query.setParameter("votingId", voting.getId());
 		return query.getResultList();
+	}
+
+	public double getCountVotesByVotingBook(VotingBook votingBook) {
+		Query query = super.manager.createQuery("Select count(vb) from VortingBook vb where vb.id = :votingBookId");
+		query.setParameter("votingBookId", votingBook.getId());
+		return 0;
 	}	
 	
 }

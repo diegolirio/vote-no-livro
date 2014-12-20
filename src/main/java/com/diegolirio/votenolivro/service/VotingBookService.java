@@ -21,7 +21,10 @@ public class VotingBookService {
 	}
 
 	public void save(VotingBook votingBook) {
-		this.votingBookDao.save(votingBook);
+		if(votingBook.getId() == 0)
+			this.votingBookDao.save(votingBook);
+		else
+			this.votingBookDao.update(votingBook);
 	}
 
 	public List<Book> getVotingBooksByVoting(Voting voting) {

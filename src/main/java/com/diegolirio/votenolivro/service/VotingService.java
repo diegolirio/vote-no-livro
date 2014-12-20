@@ -19,7 +19,10 @@ public class VotingService {
 	}
 
 	public void save(Voting voting) {
-		this.votingDao.save(voting);
+		if(voting.getId() == 0)
+			this.votingDao.save(voting);
+		else
+			this.votingDao.update(voting);
 	}
 
 	public Voting getByDescription(String description) {

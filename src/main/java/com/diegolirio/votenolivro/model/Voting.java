@@ -23,6 +23,8 @@ public class Voting {
 	
 	private boolean finalized = false;
 
+	private long countTotal;
+
 	public Voting() {}
 	
 	public Voting(long id) {
@@ -59,6 +61,18 @@ public class Voting {
 
 	public void setFinalized(boolean finalized) {
 		this.finalized = finalized;
+	}
+
+	public long getCountTotal() {
+		return countTotal;
+	}
+
+	public void setCountTotal(long countTotal) {
+		this.countTotal = countTotal;
+	}
+
+	public void setCountVotes(long countTotal) {
+		this.countTotal = countTotal;
 	}
 	
 	

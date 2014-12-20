@@ -3,10 +3,11 @@ package com.diegolirio.votenolivro.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.diegolirio.votenolivro.dao.UserDao;
 import com.diegolirio.votenolivro.dao.VoteDao;
 import com.diegolirio.votenolivro.model.User;
 import com.diegolirio.votenolivro.model.Vote;
+import com.diegolirio.votenolivro.model.Voting;
+import com.diegolirio.votenolivro.model.VotingBook;
 
 @Service("voteService")
 public class VoteService {
@@ -15,17 +16,28 @@ public class VoteService {
 	private VoteDao voteDao;
 	
 	@Autowired
-	private UserDao userDao;
+	private UserService userService;
+
+	@Autowired
+	private VotingBookService votingBookService;
+
+	@Autowired
+	private VotingService votingService;
 
 	public void saveVoteUser(Vote vote) {
-		User user = this.userDao.getUserByEmail(vote.getUser().getEmail());
-		if(user == null) {
-			user = new User();
-			user.setEmail(vote.getUser().getEmail());
-			this.userDao.save(user);
-			vote.setUser(user);
-		}
-		this.voteDao.save(vote);
+		User user = this.userService.getUserIfExistOrSaveNotExist(vote.getUser().getEmail());
+		vote.setUser(user);
+		this.voteDao.save(vote); 
+		// Updates count Book votes		
+		VotingBook votingBook = vote.getVotingBook();
+		long countVotes = this.voteDao.getCountVotesByVotingBook(vote.getVotingBook());
+		votingBook.setCountVotes(countVotes);
+		this.votingBookService.save(votingBook);
+		// Updates count total
+		Voting voting = vote.getVotingBook().getVoting();
+		long countTotal = this.voteDao.getCountByVoting(voting);
+		voting.setCountVotes(countTotal);
+		this.votingService.save(voting);
 	}
 
 }

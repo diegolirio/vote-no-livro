@@ -24,6 +24,7 @@ public class VoteController {
 			this.voteService.saveVoteUser(vote);
 			return new ResponseEntity<String>(HttpStatus.CREATED);
 		} catch(Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
