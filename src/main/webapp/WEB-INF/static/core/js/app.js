@@ -17,6 +17,9 @@ $app.config(function($routeProvider, $httpProvider) {
 				{ controller: votingController, templateUrl: SERVER_URL + '/votacao_livro/lista' })
 		.when('/votacao_livro/:id',                
 				{ controller: votingController, templateUrl: SERVER_URL + '/votacao_livro/confirmar' })
+		// usuario
+		.when('/usuario/cadastro/:email',
+				{ controller: votingController, templateUrl: SERVER_URL + '/usuario/cadastro' })
 		// not found
 		.otherwise({redirectTo : '/'});
 	

@@ -59,7 +59,7 @@
             </a>             		
 			<h1 class="text-danger">
 				Seu voto foi computado! 
-				<small> <a href="#"> Complete seu cadastro...</a></small> 
+				<small> <a href="#/usuario/cadastro/{{vote.user.email}}"> Complete seu cadastro...</a></small> 
 			</h1>
 			
 	        <section class="content"> 

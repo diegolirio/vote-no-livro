@@ -54,4 +54,23 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		});		
 	};
 	
+	// User
+	$scope.loadUserCadastre = function() {
+		$scope.getUserByEmail($routeParams.email);
+	};
+	
+	$scope.getUserByEmail = function(email) {
+		$http.get($scope.server('/usuario/get/por/email/'+email+'/json')).success(function(data) {
+			$scope.user = data;
+		});
+	};
+	
+	$scope.saveUser = function(user, confirmPassword) {
+		alert(JSON.stringify(user));
+		if(user.password == confirmPassword) {
+			alert('Salvar user');
+		} else {
+			alert(user.password +'=='+ confirmPassword);
+		}
+	};
 };

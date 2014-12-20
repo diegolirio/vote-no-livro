@@ -22,5 +22,9 @@ public class UserService {
 		return user;
 	}
 
+	public User getUserByEmail(String email) {
+		return this.userDao.getUserByEmail(email);
+	}
+
 	
 }
