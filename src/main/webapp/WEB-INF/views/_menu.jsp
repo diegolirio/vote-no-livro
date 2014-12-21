@@ -20,8 +20,8 @@
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
 						
-						<c:if test="${empty usuario}">
-							<li><a href="${pageContext.request.contextPath}/usuario/login?next=${requestScope['javax.servlet.forward.request_uri']}"><i class="fa fa-sign-in"></i> Login</a></li>						
+						<c:if test="${empty user}">
+							<li><a href="#/usuario/login?next=${requestScope['javax.servlet.forward.request_uri']}"><i class="fa fa-sign-in"></i> Login</a></li>						
 						</c:if>
 						
 						<c:if test="${not empty usuario}">
@@ -31,6 +31,7 @@
 	                                <i class="glyphicon glyphicon-user"></i>
 	                                <span>Jane Doe <i class="caret"></i></span>
 	                            </a>
+	                            
 	                            <ul class="dropdown-menu">
 	                                <!-- User image -->
 	                                <li class="user-header bg-light-blue">

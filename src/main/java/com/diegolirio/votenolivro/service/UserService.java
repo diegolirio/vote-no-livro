@@ -33,5 +33,9 @@ public class UserService {
 			this.userDao.update(user);
 	}
 
+	public boolean login(User user) {
+		return true; //TODO
+	}
+
 	
 }

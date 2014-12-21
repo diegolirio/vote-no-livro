@@ -68,12 +68,22 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 	$scope.saveUser = function(user, confirmPassword) {
 		alert(JSON.stringify(user));
 		if(user.password == confirmPassword) {
-			http.post($scope.server('/usuario/salvar', user)).succsess(function(data) {
+			
+			$http.post($scope.server("/usuario/salvar"), user).success(function(data) {
 				alert('Usuario gravado com sucesso');
-				$location.path("/usuario/cadastro/"+user.email);
-			});
+				$location.path("/usuario/cadastro/"+user.email); 
+			});			
+			
 		} else {
 			alert("Senha confirmada não confere!");
 		}
+	};
+	
+	$scope.login = function(user) {
+		alert(JSON.stringify(user));
+		$http.post($scope.server("/usuario/login"), user).success(function(data) {
+			$location.path("/"); 
+		});			
+	
 	};
 };

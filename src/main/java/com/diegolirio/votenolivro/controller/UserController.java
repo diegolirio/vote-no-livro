@@ -1,5 +1,7 @@
 package com.diegolirio.votenolivro.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +41,6 @@ public class UserController {
 
 	@RequestMapping(value="/salvar", method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> save(@RequestBody User user) {
-		System.out.println(user);
 		try {
 			this.userSerive.save(user);
 			return new ResponseEntity<String>(HttpStatus.CREATED);
@@ -48,6 +49,22 @@ public class UserController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String pageLogin() {
+		return "user/login";
+	}
 	
+	@RequestMapping(value="/login", method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<String> login(@RequestBody User user, HttpSession session) {
+		try {
+			this.userSerive.login(user);
+			session.setAttribute("user", user);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}	
 	
 }

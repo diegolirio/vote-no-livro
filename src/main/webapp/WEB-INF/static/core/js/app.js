@@ -20,6 +20,8 @@ $app.config(function($routeProvider, $httpProvider) {
 		// usuario
 		.when('/usuario/cadastro/:email',
 				{ controller: votingController, templateUrl: SERVER_URL + '/usuario/cadastro' })
+		.when('/usuario/login',
+				{ controller: votingController, templateUrl: SERVER_URL + '/usuario/login' })	
 		// not found
 		.otherwise({redirectTo : '/'});
 	
