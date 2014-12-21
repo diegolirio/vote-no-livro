@@ -34,7 +34,7 @@ public class UserService {
 	}
 
 	public boolean login(User user) {
-		return true; //TODO
+		return this.userDao.login(user);
 	}
 
 	

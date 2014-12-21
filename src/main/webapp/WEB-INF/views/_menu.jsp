@@ -24,7 +24,7 @@
 							<li><a href="#/usuario/login?next=${requestScope['javax.servlet.forward.request_uri']}"><i class="fa fa-sign-in"></i> Login</a></li>						
 						</c:if>
 						
-						<c:if test="${not empty usuario}">
+						<c:if test="${not empty user}">
 	                        <!-- User Account: style can be found in dropdown.less -->
 	                        <li class="dropdown user user-menu">
 	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
