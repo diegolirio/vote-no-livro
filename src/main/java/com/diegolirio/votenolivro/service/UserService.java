@@ -26,5 +26,12 @@ public class UserService {
 		return this.userDao.getUserByEmail(email);
 	}
 
+	public void save(User user) {
+		if(user.getId() == 0)
+			this.userDao.save(user);
+		else
+			this.userDao.update(user);
+	}
+
 	
 }
