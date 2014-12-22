@@ -104,7 +104,9 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		$scope.showLoader();
 		$http.post($scope.server("/usuario/login"), user).success(function(data) {
 			//$location.path("/");
-			window.location.href = $scope.server("/");  
+			$scope.messageLogin = data;
+ 			if(JSON.parse(data) == true)  
+				window.location.href = $scope.server("/");
 		});			
 	};
 	

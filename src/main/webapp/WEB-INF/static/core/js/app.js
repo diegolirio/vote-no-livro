@@ -11,7 +11,7 @@ $app.config(function($routeProvider, $httpProvider) {
 		.when('/votacao/s',    
 				{ controller: votingController, templateUrl: SERVER_URL + '/votacao/s' })
 		.when('/votacao/nova', 
-				{ controller: votingController, templateUrl: SERVER_URL + '/votacao/nova' })
+				{ controller: votingController, templateUrl: SERVER_URL + '/votacao/system/nova' })
 		// votingBook 
 		.when('/votacao_livro/lista-de-livro/votacao/:votingId',  
 				{ controller: votingController, templateUrl: SERVER_URL + '/votacao_livro/lista' })

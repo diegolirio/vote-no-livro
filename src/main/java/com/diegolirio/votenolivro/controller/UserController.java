@@ -62,7 +62,7 @@ public class UserController {
 			if(this.userService.login(user)) {
 				User userlogged = this.userService.getUserByEmail(user.getEmail());
 				session.setAttribute("user", userlogged);
-				return new ResponseEntity<String>("true",HttpStatus.OK);
+				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(true),HttpStatus.OK);
 			} else {
 				return new ResponseEntity<String>("Usuario ou senha invalido!", HttpStatus.OK);
 			}

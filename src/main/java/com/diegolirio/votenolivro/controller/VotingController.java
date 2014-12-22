@@ -48,5 +48,10 @@ public class VotingController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
 	}	
+
+	@RequestMapping(value="/system/nova", method=RequestMethod.GET)
+	public ModelAndView pageNova() {
+		return new ModelAndView("voting/form");
+	}
 	
 }

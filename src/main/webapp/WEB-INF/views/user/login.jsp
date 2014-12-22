@@ -1,6 +1,13 @@
 
         <div class="form-box" id="login-box">
             <div class="header">Login</div>
+            
+	        <div class="alert alert-danger alert-dismissable" ng-show="messageLogin != null">
+	            <i class="fa fa-ban"></i>
+	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	            {{messageLogin}}
+	        </div>
+	        
             <form ng-submit="login(user)" >
                 <div class="body bg-gray">
                     <div class="form-group">
