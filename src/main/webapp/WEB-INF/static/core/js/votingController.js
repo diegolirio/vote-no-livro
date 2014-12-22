@@ -51,6 +51,7 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		$http.post($scope.server("/voto/salvar"), $scope.vote).success(function(data) {
 			$scope.confirmedVote = true;
 			$scope.getVotingBooksByVoting($scope.vote.votingBook.voting.id);
+			$scope.getUserByEmailForRegistration($scope.vote.user.email);
 		});		
 	};
 	
@@ -65,10 +66,17 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		});
 	};
 	
+
+	$scope.getUserByEmailForRegistration = function(email) {
+		$http.get($scope.server('/usuario/get/por/email/'+email+'/json')).success(function(data) {
+			$scope.user = data;
+			if($scope.user.name == null) 
+				$scope.completeRegistration = true;
+		});
+	};	
+	
 	$scope.saveUser = function(user, confirmPassword) {
-		alert(JSON.stringify(user));
 		if(user.password == confirmPassword) {
-			
 			$http.post($scope.server("/usuario/salvar"), user).success(function(data) {
 				alert('Usuario gravado com sucesso');
 				$location.path("/usuario/cadastro/"+user.email); 
@@ -80,10 +88,11 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 	};
 	
 	$scope.login = function(user) {
-		alert(JSON.stringify(user));
 		$http.post($scope.server("/usuario/login"), user).success(function(data) {
-			$location.path("/"); 
+			//$location.path("/");
+			window.location.href = $scope.server("/");  
 		});			
 	
 	};
+
 };

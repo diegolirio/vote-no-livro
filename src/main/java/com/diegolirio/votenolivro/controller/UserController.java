@@ -40,9 +40,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/salvar", method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<String> save(@RequestBody User user) {
+	public ResponseEntity<String> save(@RequestBody User user, HttpSession session) {
 		try {
 			this.userSerive.save(user);
+			session.setAttribute("user", user);
 			return new ResponseEntity<String>(HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -58,13 +59,22 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> login(@RequestBody User user, HttpSession session) {
 		try {
-			this.userSerive.login(user);
-			session.setAttribute("user", user);
+			if(this.userSerive.login(user)) {
+				User userlogged = this.userSerive.getUserByEmail(user.getEmail());
+				session.setAttribute("user", userlogged);
+			}
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}	
+
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}	
+	
 	
 }

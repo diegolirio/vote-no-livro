@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <aside class="right-side" ng-init="loadVotings()">
 
          <!-- Content Header (Page header) -->
@@ -5,7 +7,9 @@
              <h1>
                  Votações
                  <small>'s</small>
-                 &nbsp; <a href="#/votacao/nova" class="btn btn-success btn-sm">Criar Nova Votação</a>
+                 <c:if test="${not empty user}">
+                 	&nbsp; <a href="#/votacao/nova" class="btn btn-success btn-sm">Criar Nova Votação</a>
+                 </c:if>
              </h1>
              
              <ol class="breadcrumb">
