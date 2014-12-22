@@ -10,3 +10,7 @@ Votacao de Livros
   - Spring security
   - JPA e Hibernate
   - Mysql
+  - Maven
+  - Tomcat 7
+  - AngularJS
+  - Eclipse IDE 

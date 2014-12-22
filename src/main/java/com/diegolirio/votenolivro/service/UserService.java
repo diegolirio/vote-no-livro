@@ -1,5 +1,6 @@
 package com.diegolirio.votenolivro.service;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +28,34 @@ public class UserService {
 	}
 
 	public void save(User user) {
-		if(user.getId() == 0)
-			this.userDao.save(user);
+		if(user.getId() == 0) {
+			User userByEmail = this.getUserByEmail(user.getEmail());
+			if(userByEmail == null) // se não existe o usuario com o mesmo email cadastrado!!! 
+				this.userDao.save(user);
+			else {
+				userByEmail.setEmail(user.getEmail());
+				userByEmail.setName(user.getName());
+				userByEmail.setNickname(user.getNickname());
+				userByEmail.setPassword(user.getPassword());
+				this.userDao.update(userByEmail);
+			}
+		}
 		else
 			this.userDao.update(user);
-	}
+	}	
 
 	public boolean login(User user) {
 		return this.userDao.login(user);
+	}
+
+	public boolean recoverPassword(User user) {
+		User userRecover = this.userDao.getUserByEmail(user.getEmail());
+		if(userRecover == null || StringUtils.isEmpty(user.getPassword())) {
+			return false;
+		} else {
+			// Send Email.. 
+		}
+		return true;
 	}
 
 	

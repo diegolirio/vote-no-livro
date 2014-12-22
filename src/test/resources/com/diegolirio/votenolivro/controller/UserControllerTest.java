@@ -74,6 +74,24 @@ public class UserControllerTest {
 			        .andExpect(status().isCreated());		
 	}	
 	
-
+	@Test
+	public void testDeveRetornarPaginaDeEsqueciASenha() throws Exception {
+		mockMvc.perform(get("/usuario/esqueci_a_senha"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("user/recover-password"));
+	}
+	
+	@Test
+	public void testDeveRecuperarSenhaDoUsuarioJSON() throws Exception {
 		
+		User user = new User();
+		user.setEmail("diegolirio.dl@gmail.com");
+		
+		String json = new ObjectMapper().writeValueAsString(user);
+		
+		mockMvc.perform(post("/usuario/recover_password")
+			        .contentType(MediaType.APPLICATION_JSON).content(json ))
+			        .andExpect(status().isCreated());		
+	}		
+	
 }

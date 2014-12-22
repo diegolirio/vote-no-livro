@@ -16,7 +16,7 @@
                 <div class="footer">                                                               
                     <button type="submit" class="btn bg-olive btn-block">Entrar</button>  
                     
-                    <p><a href="#">Esqueci a senha</a></p>
+                    <p><a href="#/usuario/esqueci_a_senha">Esqueci a senha</a></p>
                     
                     <a href="#/usuario/cadastro" class="text-center">Criar nova conta</a>
                 </div>

@@ -17,10 +17,10 @@
 
          <!-- Main content -->
          <section class="content" ng-show="!confirmedVote"> 
-             <div class="col-lg-4">              
+             <div class="col-lg-3 col-md-6 col-sm-4 col-xs-12">              
                   <img src="{{votingBook.book.imgUrl}}" class="img-thumbnail img-responsive" />
              </div>
-             <div class="col-lg-6">
+             <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
              	<div class="row">
 	               	  <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
 						  <i class="fa fa-reply"></i>  Voltar 
@@ -40,11 +40,11 @@
 	             		<input type="hidden" ng-model="vote.votingBook.id" value="{{votingBook.id}}"/>
 	             		
 						<div class="control-group">
-							<div class="controls" > 
+							<div class="controls" >  
 								<label>Digite seu Email Para computar o Voto</label> 
-								<input type="email" ng-model="vote.user.email" class="form-control" required placeholder="Email" name="email"/>
+								<input type="email" ng-model="vote.user.email" ng-value="${user.email}" class="form-control" required placeholder="Email" name="email"/>
 							</div>
-						</div>	             
+						</div>  
 						<br/>
 						<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Computar Voto</button>		
 	             		
@@ -64,7 +64,7 @@
 			
 	        <section class="content"> 
 	              <div ng-repeat="vb in votingBooks">
-	                  <div class="col-lg-2">                  	   
+	                  <div class="col-lg-2 col-sm-2 col-md-3 col-xs-8">                  	   
 	                      <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
 					       <p class="text-center">
 					       		{{vb.countVotes * 100 / vb.voting.countTotal | number:0 }} % 

@@ -62,8 +62,11 @@ public class UserController {
 			if(this.userSerive.login(user)) {
 				User userlogged = this.userSerive.getUserByEmail(user.getEmail());
 				session.setAttribute("user", userlogged);
+				return new ResponseEntity<String>(HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("Usuario ou senha invalido!", HttpStatus.UNAUTHORIZED);
 			}
-			return new ResponseEntity<String>(HttpStatus.OK);
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -76,5 +79,22 @@ public class UserController {
 		return "redirect:/";
 	}	
 	
+	@RequestMapping(value="/esqueci_a_senha", method=RequestMethod.GET)
+	public String pageRecoverPassword() {
+		return "user/recover-password";
+	}
+	
+	@RequestMapping(value="/recover_password", method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<String> recoverPassword(@RequestBody User user) {
+		try {
+			if(this.userSerive.recoverPassword(user)) 
+				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(true), HttpStatus.OK);
+			else
+				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(false), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}		
 	
 }

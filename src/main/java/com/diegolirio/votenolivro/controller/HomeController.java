@@ -75,6 +75,8 @@ public class HomeController {
 		
 		this.createCulpaDasEstrelas(voteNoLivro);
 		this.createOLadoBomDaVida(voteNoLivro);
+		this.createSeEuFicar(voteNoLivro); 
+		this.createQueridoJohn(voteNoLivro);
 			
 		return "redirect:/";
 	}
@@ -163,6 +165,88 @@ public class HomeController {
 		}		
 	}	
 	
-	
+	private void createSeEuFicar(Voting voteNoLivro) {
+		Set<Author> authors = new HashSet<Author>();
+		
+		// verifica se ja existe...
+		Author gayleForman = this.authorService.getByName("Gayle Forman");
+		if(gayleForman == null) {
+			gayleForman = new Author();
+			gayleForman.setName("Gayle Forman");
+			this.authorService.save(gayleForman);
+			authors.add(gayleForman);
+		}
+		
+		// verifica se ja existe...
+		Publisher novoConceito = this.publisherService.getByName("Novo Conceito");
+		if(novoConceito == null) {
+			novoConceito = new Publisher();
+			novoConceito.setName("Novo Conceito");
+			this.publisherService.save(novoConceito);
+		}
+		
+		// verifica se ja existe...
+		Book seEuFicar = this.bookService.getByTitleAndYearAndPublisherAndEdicao("Se Eu Ficar", 2014, novoConceito, 1);
+		if(seEuFicar == null) {
+			seEuFicar = new Book();
+			seEuFicar.setTitle("Se Eu Ficar");
+			seEuFicar.setYear(2013);
+			seEuFicar.setPublisher(novoConceito);
+			seEuFicar.setEdicao(1); 
+			seEuFicar.setImgUrl("/votenolivro/static/imagesUp/se_eu_ficar.jpg");
+			seEuFicar.setAuthors(authors);
+			this.bookService.save(seEuFicar);
+		}
+		
+		VotingBook voteNoLivroSeEuFicar = this.votingBookService.get(voteNoLivro, seEuFicar);
+		if(voteNoLivroSeEuFicar == null) {
+			voteNoLivroSeEuFicar = new VotingBook();
+			voteNoLivroSeEuFicar.setBook(seEuFicar);
+			voteNoLivroSeEuFicar.setVoting(voteNoLivro);
+			this.votingBookService.save(voteNoLivroSeEuFicar);
+		}		
+	}	
+		
+	private void createQueridoJohn(Voting voteNoLivro) {
+		Set<Author> authors = new HashSet<Author>();
+		
+		// verifica se ja existe...
+		Author nicholasSparks = this.authorService.getByName("Nicholas Sparks");
+		if(nicholasSparks == null) {
+			nicholasSparks = new Author();
+			nicholasSparks.setName("Nicholas Sparks");
+			this.authorService.save(nicholasSparks);
+			authors.add(nicholasSparks);
+		}
+		
+		// verifica se ja existe...
+		Publisher novoConceito = this.publisherService.getByName("Novo Conceito");
+		if(novoConceito == null) {
+			novoConceito = new Publisher();
+			novoConceito.setName("Novo Conceito");
+			this.publisherService.save(novoConceito);
+		}
+		
+		// verifica se ja existe...
+		Book queridoJohn = this.bookService.getByTitleAndYearAndPublisherAndEdicao("Querido John", 2010, novoConceito, 1);
+		if(queridoJohn == null) {
+			queridoJohn = new Book();
+			queridoJohn.setTitle("Querido John");
+			queridoJohn.setYear(2010);
+			queridoJohn.setPublisher(novoConceito);
+			queridoJohn.setEdicao(1); 
+			queridoJohn.setImgUrl("/votenolivro/static/imagesUp/querido_john.jpg");
+			queridoJohn.setAuthors(authors);
+			this.bookService.save(queridoJohn);
+		}
+		
+		VotingBook voteNoLivroQueridoJohn = this.votingBookService.get(voteNoLivro, queridoJohn);
+		if(voteNoLivroQueridoJohn == null) {
+			voteNoLivroQueridoJohn = new VotingBook();
+			voteNoLivroQueridoJohn.setBook(queridoJohn);
+			voteNoLivroQueridoJohn.setVoting(voteNoLivro);
+			this.votingBookService.save(voteNoLivroQueridoJohn);
+		}		
+	}		
 	
 }

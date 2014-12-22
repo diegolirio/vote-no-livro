@@ -23,7 +23,7 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 	
 	$scope.loadConfirm = function() {
 		$scope.confirmedVote = false;
-		$scope.getVotingBookById($routeParams.votingId);
+		$scope.getVotingBookById($routeParams.id);
 	};
 	
 	$scope.getVotingBooksByVoting = function(id) {
@@ -32,15 +32,15 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		});		
 	};	
 	
-	$scope.getVotingBookById = function() {
-		$http.get($scope.server('/votacao_livro/'+$routeParams.id+'/json')).success(function(data) {
+	$scope.getVotingBookById = function(id) {
+		$http.get($scope.server('/votacao_livro/'+id+'/json')).success(function(data) {
 			$scope.votingBook = data;
 		});		
-	};	
+	};
 	
-	// Book
-	$scope.getBookById = function() {
-		$http.get($scope.server('/livro/'+$routeParams.id+'/json')).success(function(data) {
+	// Book 
+	$scope.getBookById = function(id) {
+		$http.get($scope.server('/livro/'+id+'/json')).success(function(data) {
 			$scope.book = data;
 		});		
 	};
@@ -57,7 +57,11 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 	
 	// User
 	$scope.loadUserCadastre = function() {
-		$scope.getUserByEmail($routeParams.email);
+		if($routeParams.email != undefined) {
+			$scope.getUserByEmail($routeParams.email); 
+		} else {
+			$scope.user = {}; 
+		}
 	};
 	
 	$scope.getUserByEmail = function(email) {
@@ -79,7 +83,8 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 		if(user.password == confirmPassword) {
 			$http.post($scope.server("/usuario/salvar"), user).success(function(data) {
 				alert('Usuario gravado com sucesso');
-				$location.path("/usuario/cadastro/"+user.email); 
+				//$location.path("/usuario/cadastro/"+user.email);
+				window.location.href = $scope.server("/");  
 			});			
 			
 		} else {
@@ -92,7 +97,15 @@ function votingController($scope, $location, $window, $routeParams, $http) {
 			//$location.path("/");
 			window.location.href = $scope.server("/");  
 		});			
+	};
 	
+	$scope.recoverPassword = function(user) {
+		$http.post($scope.server("/usuario/recover_password"), user).success(function(data, statusText, response) {
+			if(JSON.parse(data) == true)     
+				alert('Email enviado com a senha...');  
+			else   
+				alert('Email não cadastrado na base de dados ou cadastro encontra-se incompleto!!!\nNa pagina de login clique em Criar nova conta');
+		});		
 	};
 
 };
