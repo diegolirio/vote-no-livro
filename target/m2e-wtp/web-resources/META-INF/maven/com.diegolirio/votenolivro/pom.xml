@@ -121,7 +121,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
-		</dependency> 
+		</dependency>
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -152,14 +152,14 @@
 			<artifactId>cglib</artifactId>
 			<version>2.2</version>
 		</dependency>
-		
-	<!-- Sprint Test -->
+
+		<!-- Sprint Test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
 			<scope>test</scope>
-		</dependency> 
+		</dependency>
 		<!-- spring ockito -->
 		<dependency>
 			<groupId>org.kubek2k.mockito.spring</groupId>
@@ -172,12 +172,23 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.5</version>
 		</dependency>
-	<!-- jackson | para retorno Json -->
+		<!-- jackson | para retorno Json -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.10</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-support</artifactId>
+			<version>2.0.6</version>
+		</dependency>
 
 	</dependencies>
 	<build>

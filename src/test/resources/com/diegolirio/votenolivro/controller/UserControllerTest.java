@@ -1,5 +1,6 @@
 package com.diegolirio.votenolivro.controller;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -20,6 +21,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.diegolirio.votenolivro.helper.UserHelper;
 import com.diegolirio.votenolivro.model.User;
 import com.diegolirio.votenolivro.service.UserService;
 
@@ -35,11 +37,14 @@ public class UserControllerTest {
 	
 	@Mock
 	private UserService userService;
+	
+	private User user;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+		user = UserHelper.getUserHelper();
 	}
 
 	@Test
@@ -51,24 +56,14 @@ public class UserControllerTest {
 
 	@Test
 	public void testDeveBuscarUsuarioPorEmailJSON() throws Exception {
-		String email = "diegolirio.dl@gmail.com";
-		mockMvc.perform(get("/usuario/get/por/email/"+email +"/json"))
+		mockMvc.perform(get("/usuario/get/por/email/"+user.getEmail()+"/json"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"));
 	}
 	
 	@Test
 	public void testDeveSalvarUsuarioJSON() throws Exception {
-		
-		User user = new User();
-		user.setName("Diego Lirio Damacena Pereira");
-		user.setEmail("diegolirio.dl@gmail.com");
-		user.setNickname("Diego");
-		user.setPassword("123456");
-		user.setId(1l);
-		
 		String json = new ObjectMapper().writeValueAsString(user);
-		
 		mockMvc.perform(post("/usuario/salvar")
 			        .contentType(MediaType.APPLICATION_JSON).content(json ))
 			        .andExpect(status().isCreated());		
@@ -80,18 +75,60 @@ public class UserControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(view().name("user/recover-password"));
 	}
+
+	
 	
 	@Test
 	public void testDeveRecuperarSenhaDoUsuarioJSON() throws Exception {
-		
-		User user = new User();
-		user.setEmail("diegolirio.dl@gmail.com");
-		
 		String json = new ObjectMapper().writeValueAsString(user);
+		when(userService.recoverPassword(user)).thenReturn(true);
 		
 		mockMvc.perform(post("/usuario/recover_password")
-			        .contentType(MediaType.APPLICATION_JSON).content(json ))
-			        .andExpect(status().isCreated());		
+			        .contentType(MediaType.APPLICATION_JSON).content(json))
+			        .andExpect(status().isOk())
+			        ;//.andExpect(content().string("true"));		
 	}		
 	
+	@Test
+	public void testDeveRetornarFalsoAoRecuperarSenhaDoUsuarioJSON() throws Exception {
+		
+		String json = new ObjectMapper().writeValueAsString(user);
+		when(userService.recoverPassword(user)).thenReturn(false);
+		
+		mockMvc.perform(post("/usuario/recover_password")
+			        .contentType(MediaType.APPLICATION_JSON).content(json))
+			        .andExpect(status().isOk())
+			        .andExpect(content().string("false"));
+	}		
+	
+	@Test
+	public void testDeveRealizarLoginDoUsuarioJSON() throws Exception {
+		String json = new ObjectMapper().writeValueAsString(user);
+		boolean logged=true;
+		when(userService.login(user)).thenReturn(logged);
+		
+		mockMvc.perform(post("/usuario/login")
+			        .contentType(MediaType.APPLICATION_JSON).content(json))
+			        .andExpect(status().isOk())
+			        ;//.andExpect(content().string("true"));		
+	}		
+	
+	@Test
+	public void testDeveRealizarLoginComFalhaDoUsuarioJSON() throws Exception {
+		user.setPassword("XXXX");
+		String json = new ObjectMapper().writeValueAsString(user);
+		boolean logged=false;
+		when(userService.login(user)).thenReturn(logged);
+		
+		mockMvc.perform(post("/usuario/login")
+			        .contentType(MediaType.APPLICATION_JSON).content(json))
+			        .andExpect(status().isOk())
+			        .andExpect(content().string("Usuario ou senha invalido!"));		
+	}		
+	
+	@Test
+	public void testDeveRealizarUmLogout() throws Exception {
+		mockMvc.perform(get("/usuario/logout"))
+				.andExpect(status().is(302));
+	}	
 }

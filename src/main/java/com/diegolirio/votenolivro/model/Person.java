@@ -3,9 +3,12 @@ package com.diegolirio.votenolivro.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-public class Person {
+public abstract class Person {
 
 	@Id @GeneratedValue
 	private long id;

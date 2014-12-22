@@ -1,4 +1,4 @@
-<div ng-init="getVotingBookById()" >
+<div ng-init="loadConfirm()">
 
 	<aside class="right-side" >
 
@@ -11,43 +11,72 @@
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Votações</a></li>
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Votação/Livros</a></li>
-                 <li class="active">Votar</li>
+                 <li class="active">Votar</li> 
              </ol>
          </section>
 
          <!-- Main content -->
-         <section class="content"> 
-             <div class="col-lg-4">                  	   
+         <section class="content" ng-show="!confirmedVote"> 
+             <div class="col-lg-3 col-md-6 col-sm-4 col-xs-12">              
                   <img src="{{votingBook.book.imgUrl}}" class="img-thumbnail img-responsive" />
              </div>
-             <div class="col-lg-6">
+             <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
              	<div class="row">
-	             	<h1>{{votingBook.book.title}}</h1>
+	               	  <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
+						  <i class="fa fa-reply"></i>  Voltar 
+	                  </a>             	
+	             	<h2 class="text-info">{{votingBook.book.title}}</h2>
 	             	<p>
 		             	<span ng-repeat="author in votingBook.book.authors">
 		             		{{author.name}}, 
 		             	</span>
-		             	<span >{{votingBook.book.year}}, editora {{votingBook.book.publisher.name}}</span>
+		             	<span>{{votingBook.book.year}}, editora {{votingBook.book.publisher.name}}</span>
 	             	</p>
 				</div>           
 				<br/><br/><br/> 
-				<h3>Digite seu Email Para computar o Voto</h3> 
 				<div class="row">  	
 	             	<form ng-submit="computeVote()" class="form-horizontal" > 
 	             		
+	             		<input type="hidden" ng-model="vote.votingBook.id" value="{{votingBook.id}}"/>
+	             		
 						<div class="control-group">
-							<div class="controls" >
-								<input type="email" ng-model="user.email" class="form-control" required placeholder="Email"/>
+							<div class="controls" >  
+								<label>Digite seu Email Para computar o Voto</label> 
+								<input type="email" ng-model="vote.user.email" ng-value="${user.email}" class="form-control" required placeholder="Email" name="email"/>
 							</div>
-						</div>	             
+						</div>  
 						<br/>
-						<button type="submit" class="btn btn-success">Computar Voto</button>		
+						<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Computar Voto</button>		
 	             		
 		            </form>
 		        </div>
 		     </div>
 		</section>
+		
+		<section class="content" ng-show="confirmedVote"> 
+            <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
+		  		<i class="fa fa-reply"></i>  Votar novamente 
+            </a>             		
+			<h1 class="text-danger">
+				Seu voto foi computado! 
+				<small ng-show="completeRegistration"> <a href="#/usuario/cadastro/{{vote.user.email}}"> Complete seu cadastro...</a></small> 
+			</h1>
+			
+	        <section class="content"> 
+	              <div ng-repeat="vb in votingBooks">
+	                  <div class="col-lg-2 col-sm-2 col-md-3 col-xs-8">                  	   
+	                      <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
+					       <p class="text-center">
+					       		{{vb.countVotes * 100 / vb.voting.countTotal | number:0 }} % 
+					       		<span class="text-muted">({{vb.countVotes}})</span>
+					       </p>
+	                  </div>
+			     </div>
+			</section>			
+			
+		</section>
 
 	</aside>
 
 </div>
+

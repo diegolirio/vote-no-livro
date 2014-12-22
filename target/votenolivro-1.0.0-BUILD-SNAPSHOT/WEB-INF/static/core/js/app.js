@@ -17,6 +17,15 @@ $app.config(function($routeProvider, $httpProvider) {
 				{ controller: votingController, templateUrl: SERVER_URL + '/votacao_livro/lista' })
 		.when('/votacao_livro/:id',                
 				{ controller: votingController, templateUrl: SERVER_URL + '/votacao_livro/confirmar' })
+		// usuario
+		.when('/usuario/cadastro/:email',
+				{ controller: votingController, templateUrl: SERVER_URL + '/usuario/cadastro' })
+		.when('/usuario/cadastro',
+				{ controller: votingController, templateUrl: SERVER_URL + '/usuario/cadastro' })
+		.when('/usuario/login',
+				{ controller: votingController, templateUrl: SERVER_URL + '/usuario/login' })
+		.when('/usuario/esqueci_a_senha',
+				{ controller: votingController, templateUrl: SERVER_URL + '/usuario/esqueci_a_senha' })	
 		// not found
 		.otherwise({redirectTo : '/'});
 	
@@ -34,12 +43,12 @@ $app.config(function($routeProvider, $httpProvider) {
 				$error = $data.error;
 				console.error($data);
 				if ($error && $error.text)
-					alert("ERROR: " + $error.text);
+					alert("ERROR ("+response.status+"): " + $error.text);
 				else {	
 					if (response.status=404)
-						alert("Erro ao acessar servidor. Página não encontrada. Veja o log de erros para maiores detalhes");
+						alert("Erro ao acessar servidor. Página não encontrada ("+response.status+").");
 					else
-						alert("ERROR! See log console");
+						alert("ERROR ("+response.status+")!");
 					}
 				return $q.reject(response);
 			});

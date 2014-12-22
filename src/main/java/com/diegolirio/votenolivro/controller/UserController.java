@@ -20,7 +20,7 @@ import com.diegolirio.votenolivro.service.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService userSerive;
+	private UserService userService;
 
 	@RequestMapping(value="/cadastro", method=RequestMethod.GET)
 	public String pageCadastre() {
@@ -30,7 +30,7 @@ public class UserController {
 	@RequestMapping(value="/get/por/email/{email}/json", method=RequestMethod.GET, produces="application/json")
 	public ResponseEntity<String> getUserByEmailJSON(@PathVariable("email") String email) {
 		try {
-			User user = this.userSerive.getUserByEmail(email);
+			User user = this.userService.getUserByEmail(email);
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(user), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class UserController {
 	@RequestMapping(value="/salvar", method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> save(@RequestBody User user, HttpSession session) {
 		try {
-			this.userSerive.save(user);
+			this.userService.save(user);
 			session.setAttribute("user", user);
 			return new ResponseEntity<String>(HttpStatus.CREATED);
 		} catch(Exception e) {
@@ -59,12 +59,12 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> login(@RequestBody User user, HttpSession session) {
 		try {
-			if(this.userSerive.login(user)) {
-				User userlogged = this.userSerive.getUserByEmail(user.getEmail());
+			if(this.userService.login(user)) {
+				User userlogged = this.userService.getUserByEmail(user.getEmail());
 				session.setAttribute("user", userlogged);
-				return new ResponseEntity<String>(HttpStatus.OK);
+				return new ResponseEntity<String>("true",HttpStatus.OK);
 			} else {
-				return new ResponseEntity<String>("Usuario ou senha invalido!", HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<String>("Usuario ou senha invalido!", HttpStatus.OK);
 			}
 			
 		} catch(Exception e) {
@@ -87,7 +87,7 @@ public class UserController {
 	@RequestMapping(value="/recover_password", method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> recoverPassword(@RequestBody User user) {
 		try {
-			if(this.userSerive.recoverPassword(user)) 
+			if(this.userService.recoverPassword(user)) 
 				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(true), HttpStatus.OK);
 			else
 				return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(false), HttpStatus.OK);
