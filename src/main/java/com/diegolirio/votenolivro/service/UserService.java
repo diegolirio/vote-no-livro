@@ -13,6 +13,11 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
+	
 	public User getUserIfExistOrSaveNotExist(String email) {
 		User user = this.userDao.getUserByEmail(email);
 		if(user == null) {
@@ -58,5 +63,4 @@ public class UserService {
 		return true;
 	}
 
-	
 }
