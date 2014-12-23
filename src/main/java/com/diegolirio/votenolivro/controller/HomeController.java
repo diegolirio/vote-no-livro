@@ -77,7 +77,8 @@ public class HomeController {
 		this.createOLadoBomDaVida(voteNoLivro);
 		this.createSeEuFicar(voteNoLivro); 
 		this.createQueridoJohn(voteNoLivro);
-			
+		this.createDeixeANeveCair(voteNoLivro);	
+		
 		return "redirect:/";
 	}
 
@@ -248,5 +249,63 @@ public class HomeController {
 			this.votingBookService.save(voteNoLivroQueridoJohn);
 		}		
 	}		
-	
+
+	private void createDeixeANeveCair(Voting voteNoLivro) {
+		Set<Author> authors = new HashSet<Author>(); 
+		
+		// verifica se ja existe...
+		Author johnGreen = this.authorService.getByName("John Green");
+		if(johnGreen == null) {
+			johnGreen = new Author();
+			johnGreen.setName("John Green");
+			this.authorService.save(johnGreen);
+			authors.add(johnGreen);
+		}
+		
+		Author laurenMyracle = this.authorService.getByName("Lauren Myracle");
+		if(laurenMyracle == null) {
+			laurenMyracle = new Author();
+			laurenMyracle.setName("Lauren Myracle");
+			this.authorService.save(laurenMyracle);
+			authors.add(laurenMyracle);
+		}
+		
+		Author maureenJohnson = this.authorService.getByName("Maureen Johnson");
+		if(maureenJohnson == null) {
+			maureenJohnson = new Author();
+			maureenJohnson.setName("Maureen Johnson");
+			this.authorService.save(maureenJohnson);
+			authors.add(maureenJohnson);
+		}
+		
+		// verifica se ja existe...
+		Publisher rocco = this.publisherService.getByName("Rocco");
+		if(rocco == null) {
+			rocco = new Publisher();
+			rocco.setName("Rocco");
+			this.publisherService.save(rocco);
+		}
+		
+		// verifica se ja existe...
+		Book deixeANeveCair = this.bookService.getByTitleAndYearAndPublisherAndEdicao("Deixe A Neve Cair", 2013, rocco, 1);
+		if(deixeANeveCair == null) {
+			deixeANeveCair = new Book();
+			deixeANeveCair.setTitle("Deixe A Neve Cair");
+			deixeANeveCair.setYear(2013);
+			deixeANeveCair.setPublisher(rocco);
+			deixeANeveCair.setEdicao(1); 
+			deixeANeveCair.setImgUrl("/votenolivro/static/imagesUp/deixe_a_neve_cair.png");
+			deixeANeveCair.setAuthors(authors);
+			this.bookService.save(deixeANeveCair);
+		}
+		
+		VotingBook voteNoLivroDeixeANeveCair = this.votingBookService.get(voteNoLivro, deixeANeveCair);
+		if(voteNoLivroDeixeANeveCair == null) {
+			voteNoLivroDeixeANeveCair = new VotingBook();
+			voteNoLivroDeixeANeveCair.setBook(deixeANeveCair);
+			voteNoLivroDeixeANeveCair.setVoting(voteNoLivro);
+			this.votingBookService.save(voteNoLivroDeixeANeveCair);
+		}		
+	}		
+
 }
