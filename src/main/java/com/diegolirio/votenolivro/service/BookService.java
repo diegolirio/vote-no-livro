@@ -13,6 +13,10 @@ public class BookService {
 	@Autowired
 	private BookDao bookDao;
 
+	public void setAuthorDao(BookDao bookDao) {
+		this.bookDao = bookDao;
+	}	
+	
 	public void save(Book book) {
 		if(book.getId() == 0) 
 			this.bookDao.save(book);

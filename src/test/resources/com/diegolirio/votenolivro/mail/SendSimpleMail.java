@@ -3,7 +3,7 @@ package com.diegolirio.votenolivro.mail;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
-public class SendSimpleMail {
+public class SendSimpleMail implements Mail {
 	
 	private MailSender mailSender;
 	 

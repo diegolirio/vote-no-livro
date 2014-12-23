@@ -57,8 +57,10 @@ public class UserService {
 		User userRecover = this.userDao.getUserByEmail(user.getEmail());
 		if(userRecover == null || StringUtils.isEmpty(user.getPassword())) {
 			return false;
-		} else {
+		} else { 
 			// Send Email.. 
+			//Mail mail = new SendSimpleMail();
+			//mail.sendMail("", "", "", "");
 		}
 		return true;
 	}
