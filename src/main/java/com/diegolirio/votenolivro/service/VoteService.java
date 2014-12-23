@@ -23,6 +23,22 @@ public class VoteService {
 
 	@Autowired
 	private VotingService votingService;
+	
+
+	public void setVoteDao(VoteDao voteDao) {
+		this.voteDao = voteDao;
+	}	
+	
+	public void setVotingService(VotingService votingService) {
+		this.votingService = votingService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	public void setVotingBookService(VotingBookService votingBookService) {
+		this.votingBookService = votingBookService;
+	}
 
 	public void saveVoteUser(Vote vote) {
 		User user = this.userService.getUserIfExistOrSaveNotExist(vote.getUser().getEmail());
@@ -39,5 +55,4 @@ public class VoteService {
 		voting.setCountVotes(countTotal);
 		this.votingService.save(voting);
 	}
-
 }

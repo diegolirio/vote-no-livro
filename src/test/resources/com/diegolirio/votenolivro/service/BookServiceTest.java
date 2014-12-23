@@ -1,9 +1,10 @@
 package com.diegolirio.votenolivro.service;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,12 +37,18 @@ public class BookServiceTest {
 
 	@Test
 	public void testGetByTitleAndYearAndPublisherAndEdicao() {
-		fail("Not yet implemented");
+		when(bookDao.getByTitleAndYearAndPublisherAndEdicao(book.getTitle(), book.getYear(), book.getPublisher(), book.getEdicao())).thenReturn(book);
+		Book _book = bookService.getByTitleAndYearAndPublisherAndEdicao(book.getTitle(), book.getYear(), book.getPublisher(), book.getEdicao());
+		verify(bookDao).getByTitleAndYearAndPublisherAndEdicao(book.getTitle(), book.getYear(), book.getPublisher(), book.getEdicao());
+		assertNotNull(_book);
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		when(bookDao.get(Book.class, book.getId())).thenReturn(book);
+		Book _book = bookService.get(book.getId());
+		verify(bookDao).get(Book.class, book.getId());
+		assertNotNull(_book);
 	}
 
 }

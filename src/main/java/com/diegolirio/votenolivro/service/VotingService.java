@@ -14,6 +14,11 @@ public class VotingService {
 	@Autowired
 	private VotingDao votingDao;
 
+	public void setVotingDao(VotingDao votingDao) {
+		this.votingDao = votingDao;
+	}
+
+	
 	public List<Voting> getList() {
 		return this.votingDao.getList(Voting.class);
 	}
@@ -32,5 +37,6 @@ public class VotingService {
 	public Voting get(long id) {
 		return this.votingDao.get(Voting.class, id);
 	}
+
 	
 }

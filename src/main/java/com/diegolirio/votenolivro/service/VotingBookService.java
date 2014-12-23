@@ -15,6 +15,10 @@ public class VotingBookService {
 
 	@Autowired
 	private VotingBookDao votingBookDao;
+	
+	public void setVotingBookDao(VotingBookDao votingBookDao) {
+		this.votingBookDao = votingBookDao;
+	}	
 
 	public VotingBook get(Voting voting, Book book) {
 		return this.votingBookDao.get(voting, book);
@@ -34,6 +38,6 @@ public class VotingBookService {
 	public VotingBook get(long id) {
 		return this.votingBookDao.get(VotingBook.class, id);
 	}
-	
+
 	
 }
