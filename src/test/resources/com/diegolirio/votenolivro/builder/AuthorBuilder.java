@@ -1,8 +1,8 @@
-package com.diegolirio.votenolivro.helper;
+package com.diegolirio.votenolivro.builder;
 
 import com.diegolirio.votenolivro.model.Author;
 
-public class AuthorHelper {
+public class AuthorBuilder {
 	
 	public static Author getAuthorHelper() {
 		Author author = new Author();

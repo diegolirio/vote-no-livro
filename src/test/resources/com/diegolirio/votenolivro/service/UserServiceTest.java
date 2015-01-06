@@ -11,8 +11,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.diegolirio.votenolivro.builder.UserBuilder;
 import com.diegolirio.votenolivro.dao.UserDao;
-import com.diegolirio.votenolivro.helper.UserHelper;
 import com.diegolirio.votenolivro.model.User;
 
 
@@ -27,7 +27,7 @@ public class UserServiceTest {
 		userService = new UserService();
 		userDao = mock(UserDao.class);
 		userService.setUserDao(userDao);
-		user = UserHelper.getUserHelper();
+		user = UserBuilder.getUserHelper();
 	}
 	
 	@Test

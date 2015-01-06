@@ -12,8 +12,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.diegolirio.votenolivro.builder.VotingBuilder;
 import com.diegolirio.votenolivro.dao.VotingDao;
-import com.diegolirio.votenolivro.helper.VotingHelper;
 import com.diegolirio.votenolivro.model.Voting;
 
 public class VotingServiceTest {
@@ -27,7 +27,7 @@ public class VotingServiceTest {
 		votingService = new VotingService();
 		votingDao = mock(VotingDao.class); 
 		votingService.setVotingDao(votingDao);
-		voting = VotingHelper.getVotingHelper();		
+		voting = VotingBuilder.getVotingHelper();		
 	}
 
 	@Test

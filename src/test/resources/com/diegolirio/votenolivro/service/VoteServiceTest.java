@@ -8,8 +8,8 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.diegolirio.votenolivro.builder.VoteBuilder;
 import com.diegolirio.votenolivro.dao.VoteDao;
-import com.diegolirio.votenolivro.helper.VoteHelper;
 import com.diegolirio.votenolivro.model.Vote;
 
 public class VoteServiceTest {
@@ -32,7 +32,7 @@ public class VoteServiceTest {
 		voteService.setUserService(userService);
 		votingBookService = mock(VotingBookService.class);
 		voteService.setVotingBookService(votingBookService);
-		vote = VoteHelper.getVoteHelper();			
+		vote = VoteBuilder.getVoteHelper();			
 	}
 
 	@Test

@@ -21,7 +21,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.diegolirio.votenolivro.helper.UserHelper;
+import com.diegolirio.votenolivro.builder.UserBuilder;
 import com.diegolirio.votenolivro.model.User;
 import com.diegolirio.votenolivro.service.UserService;
 
@@ -44,7 +44,7 @@ public class UserControllerTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-		user = UserHelper.getUserHelper();
+		user = UserBuilder.getUserHelper();
 	}
 
 	@Test

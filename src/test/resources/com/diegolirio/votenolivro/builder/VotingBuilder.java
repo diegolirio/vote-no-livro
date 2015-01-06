@@ -1,8 +1,8 @@
-package com.diegolirio.votenolivro.helper;
+package com.diegolirio.votenolivro.builder;
 
 import com.diegolirio.votenolivro.model.Voting;
 
-public class VotingHelper {
+public class VotingBuilder {
 	
 	public static Voting getVotingHelper() {
 		Voting voting = new Voting();

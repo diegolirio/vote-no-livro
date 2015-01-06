@@ -1,8 +1,8 @@
-package com.diegolirio.votenolivro.helper;
+package com.diegolirio.votenolivro.builder;
 
 import com.diegolirio.votenolivro.model.Publisher;
 
-public class PublisherHelper {
+public class PublisherBuilder {
 
 	public static Publisher getPublisherHelper() {
 		Publisher publisher = new Publisher();

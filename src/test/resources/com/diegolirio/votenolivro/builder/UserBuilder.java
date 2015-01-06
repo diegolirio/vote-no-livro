@@ -1,8 +1,8 @@
-package com.diegolirio.votenolivro.helper;
+package com.diegolirio.votenolivro.builder;
 
 import com.diegolirio.votenolivro.model.User;
 
-public class UserHelper {
+public class UserBuilder {
 	
 	public static User getUserHelper() {
 		User user = new User();

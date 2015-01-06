@@ -9,8 +9,8 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.diegolirio.votenolivro.builder.BookBuilder;
 import com.diegolirio.votenolivro.dao.BookDao;
-import com.diegolirio.votenolivro.helper.BookHelper;
 import com.diegolirio.votenolivro.model.Book;
 
 public class BookServiceTest {
@@ -24,7 +24,7 @@ public class BookServiceTest {
 		bookService = new BookService();
 		bookDao = mock(BookDao.class); 
 		bookService.setAuthorDao(bookDao);
-		book = BookHelper.getBookHelper();		
+		book = BookBuilder.getBookHelper();		
 	}
 
 	@Test

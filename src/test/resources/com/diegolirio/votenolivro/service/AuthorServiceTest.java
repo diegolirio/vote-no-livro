@@ -9,8 +9,8 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.diegolirio.votenolivro.builder.AuthorBuilder;
 import com.diegolirio.votenolivro.dao.AuthorDao;
-import com.diegolirio.votenolivro.helper.AuthorHelper;
 import com.diegolirio.votenolivro.model.Author;
 
 
@@ -25,7 +25,7 @@ public class AuthorServiceTest {
 		authorService = new AuthorService();
 		authorDao = mock(AuthorDao.class);
 		authorService.setAuthorDao(authorDao);
-		author = AuthorHelper.getAuthorHelper();
+		author = AuthorBuilder.getAuthorHelper();
 	}
 	
 	@Test
