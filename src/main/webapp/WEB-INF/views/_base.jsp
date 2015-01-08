@@ -55,11 +55,13 @@
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-route.js"></script>
-	
+	<!-- rotas e config da app angular -->
 	<script src="${pageContext.request.contextPath}/static/core/js/app.js"></script>
+	<!-- voting -->
 	<script src="${pageContext.request.contextPath}/static/core/js/votingService.js"></script>
 	<script src="${pageContext.request.contextPath}/static/core/js/votingController.js"></script>
-	
+	<!-- votingBook -->
+	<script src="${pageContext.request.contextPath}/static/core/js/votingBookService.js"></script>
 	
 
         <!-- jQuery 2.0.2 -->
