@@ -49,9 +49,18 @@
 			 
         </div><!-- ./wrapper -->
 
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/js/app.js"></script>
-		<script src="${pageContext.request.contextPath}/static/core/js/votingController.js"></script>
+<!-- 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script> -->
+<%-- 				<script src="${pageContext.request.contextPath}/static/core/js/app.js"></script> --%>
+<%-- 		<script src="${pageContext.request.contextPath}/static/core/js/votingController.js"></script> --%>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-route.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/static/core/js/app.js"></script>
+	<script src="${pageContext.request.contextPath}/static/core/js/votingService.js"></script>
+	<script src="${pageContext.request.contextPath}/static/core/js/votingController.js"></script>
+	
+	
 
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
