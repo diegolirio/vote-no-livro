@@ -4,6 +4,6 @@ app.factory('VoteService', ['$http', function($http) {
 		insert : function(vote) {
 					return $http.post(SERVER_APP + '/voto/salvar', vote);
 				}
-	}
+	};
 	
 }]);

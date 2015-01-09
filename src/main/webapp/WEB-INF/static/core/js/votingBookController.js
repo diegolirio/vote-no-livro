@@ -14,8 +14,8 @@ app.controller('VotingBookListByVoting', ['$scope', '$routeParams', 'VotingBookS
 		
 	}])
 	
-	.controller('VotingBookConfirmVote', ['$scope', '$routeParams', 'VotingBookService', 'VoteService', 
-	                                      function($scope, $routeParams, VotingBookService, VoteService) {
+	.controller('VotingBookConfirmVote', ['$scope', '$routeParams', 'VotingBookService', 'VoteService', 'UserService', 
+	                                      function($scope, $routeParams, VotingBookService, VoteService, UserService) {
 		
 		$scope.loadConfirm = function() {
 			$scope.confirmedVote = false;
@@ -29,7 +29,15 @@ app.controller('VotingBookListByVoting', ['$scope', '$routeParams', 'VotingBookS
 			// insere voto
 			VoteService.insert($scope.vote).then(function(resp) {
 				$scope.confirmedVote = true;	
-				// TODO: busca lista para mostrar livro e percentual de votacao...
+				// busca lista para mostrar livro e percentual de votacao...
+				VotingBookService.getVotingBookListByVoting($scope.vote.votingBook.voting.id).then(function(resp) {
+					$scope.votingBooks = resp.data;
+				});
+				// Busca Usuario por email para possivel termino de cadastro do mesmo
+				UserService.getUserByEmailForRegistration($scope.vote.user.email).then(function(resp) {
+					$scope.user = resp.data;
+					if($scope.user.name == null) $scope.completeRegistration = true;	 				
+				});
 			});
 		};
 	}]);
