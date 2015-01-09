@@ -11,6 +11,8 @@ app.config(['$routeProvider', function($routeProvider) {
 			// votingBook
 			.when('/votacao_livro/lista-de-livro/votacao/:votingId',
 					{ controller: 'VotingBookListByVoting', templateUrl: SERVER_APP + '/votacao_livro/lista' })
+			.when('/votacao_livro/:id',
+					{ controller: 'VotingBookConfirmVote', templateUrl: SERVER_APP + '/votacao_livro/confirmar' })
 			.when('/d', 
 					{template: '<aside class="right-side"><h1>Diego</h1></aside>'});
 		

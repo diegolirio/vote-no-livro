@@ -62,7 +62,9 @@
 	<script src="${pageContext.request.contextPath}/static/core/js/votingController.js"></script>
 	<!-- votingBook -->
 	<script src="${pageContext.request.contextPath}/static/core/js/votingBookService.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/static/core/js/votingBookController.js"></script>
+	<!-- vote -->
+	<script src="${pageContext.request.contextPath}/static/core/js/voteService.js"></script>
 
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

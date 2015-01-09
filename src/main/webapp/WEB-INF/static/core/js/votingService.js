@@ -6,7 +6,11 @@ app.factory('VotingService', ['$http', function($http) {
 						 }; 
 	
 	return {
-		getListVoting : _getListVoting 
+		getListVoting : _getListVoting,
+		
+		getVoting 	  : function(id) {
+							return $http.get(SERVER_APP + '/votacao/get/'+id+'/json');
+						}
 	};
 	 
 }]);
