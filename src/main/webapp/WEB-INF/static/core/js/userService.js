@@ -13,6 +13,9 @@ app.factory('UserService', ['$http', function($http) {
 	};
 	
 	return {
+		
+		isLoggedIn : false,
+		
 		getUserByEmailForRegistration : function(email) {
 											return $http.get(SERVER_APP + '/usuario/get/por/email/'+email+'/json');
 										},
@@ -27,7 +30,14 @@ app.factory('UserService', ['$http', function($http) {
 				 
 		login : function(user) {
 					return $http.post(SERVER_APP + '/usuario/login', user);
-				}
+				},
+				
+		session : function() {
+					return $http.get(SERVER_APP + '/usuario/session').then(function(response) {
+						isLoggedIn = true;
+						return response;
+					});
+				  }
 	};
 	
 }]);

@@ -95,6 +95,18 @@ public class UserController {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}		
+	}	
+	
+	@RequestMapping(value="/session", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getSessionLogged(HttpSession session) {
+		try {
+			User user = (User) session.getAttribute("user");
+			if(user == null) 
+				throw new RuntimeException("Usuario desconectado");
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(user), HttpStatus.OK);
+		} catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.UNAUTHORIZED);
+		}
+	}
 	
 }

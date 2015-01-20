@@ -131,4 +131,23 @@ public class UserControllerTest {
 		mockMvc.perform(get("/usuario/logout"))
 				.andExpect(status().is(302));
 	}	
+	
+	@Test
+	public void testDeveVerificarUsuarioEstaLogadoOK() throws Exception {
+		String json = new ObjectMapper().writeValueAsString(user);
+		mockMvc.perform(get("/usuario/session")
+					.sessionAttr("user", user)
+			        .contentType(MediaType.APPLICATION_JSON).content(json))
+			        .andExpect(status().isOk());
+	}			
+	
+	@Test
+	public void testDeveVerificarUsuarioEstaLogadoFalha() throws Exception {
+		String json = new ObjectMapper().writeValueAsString(user);
+		mockMvc.perform(get("/usuario/session")
+					//.sessionAttr("user", user)
+			        .contentType(MediaType.APPLICATION_JSON).content(json))
+			        .andExpect(status().isUnauthorized())
+			        .andExpect(content().string("Usuario desconectado"));		
+	}				
 }

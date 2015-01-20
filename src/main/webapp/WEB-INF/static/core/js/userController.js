@@ -1,4 +1,16 @@
-app.controller('UserCadastreController', ['$scope', '$routeParams', '$location', 'UserService', 
+app.controller('UserController', ['$scope', 'UserService',
+                                  function($scope, UserService) {
+	
+	$scope.isLoggedIn = false; 
+	
+	UserService.session().then(function(resp) {
+//		$scope.isLoggedIn = UserService.isLoggedIn;
+		$scope.isLoggedIn = true;
+		$scope.user = resp.data;
+	});
+	
+}])
+.controller('UserCadastreController', ['$scope', '$routeParams', '$location', 'UserService', 
                                           function($scope, $routeParams, $location, UserService) {
 	
 	$scope.loadUserCadastre = function() {
