@@ -1,11 +1,11 @@
-<div ng-init="loadConfirm()">
+<div ng-controller="VotingBookConfirmVote as votingBookConfirmVote">
 
 	<aside class="right-side" >
 
          <!-- Content Header (Page header) -->
          <section class="content-header">
              <h1>
-                 Votação <small> {{votingBook.voting.description}}</small>
+                 Votação <small> {{votingBookConfirmVote.votingBook.voting.description}}</small>
              </h1>
              <ol class="breadcrumb">
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -16,36 +16,36 @@
          </section>
 
          <!-- Main content -->
-         <section class="content" ng-show="!confirmedVote"> 
+         <section class="content" ng-show="!votingBookConfirmVote.confirmedVote"> 
              <div class="col-lg-3 col-md-6 col-sm-4 col-xs-12">              
-                  <img src="{{votingBook.book.imgUrl}}" class="img-thumbnail img-responsive" />
+                  <img src="{{votingBookConfirmVote.votingBook.book.imgUrl}}" class="img-thumbnail img-responsive" />
              </div>
              <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
              	<div class="row">
-	               	  <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
+	               	  <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBookConfirmVote.votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
 						  <i class="fa fa-reply"></i>  Voltar 
 	                  </a>             	
-	             	<h2 class="text-info">{{votingBook.book.title}}</h2>
+	             	<h2 class="text-info">{{votingBookConfirmVote.votingBook.book.title}}</h2>
 	             	<p>
 		             	<span ng-repeat="author in votingBook.book.authors">
-		             		{{author.name}}, 
+		             		{{votingBookConfirmVote.author.name}}, 
 		             	</span>
-		             	<span>{{votingBook.book.year}}, editora {{votingBook.book.publisher.name}}</span>
+		             	<span>{{votingBookConfirmVote.votingBook.book.year}}, editora {{votingBookConfirmVote.votingBook.book.publisher.name}}</span>
 	             	</p>
 				</div>           
 				<br/><br/><br/> 
 				<div class="row">  	
-	             	<form ng-submit="computeVote()" class="form-horizontal" > 
+	             	<form ng-submit="votingBookConfirmVote.computeVote()" class="form-horizontal" > 
 	             		
-	             		<input type="hidden" ng-model="vote.votingBook.id" value="{{votingBook.id}}"/>
+	             		<input type="hidden" ng-model="votingBookConfirmVote.vote.votingBook.id" value="{{votingBookConfirmVote.votingBook.id}}"/>
 	             		
 						<div class="control-group">
-							<div class="controls" ng-hide="isLoggedIn">  
+							<div class="controls" ng-hide="votingBookConfirmVote.isLoggedIn">  
 								<label>Digite seu Email Para computar o Voto</label> 
-								<input type="email" ng-model="vote.user.email" class="form-control" required placeholder="Email" name="email"/>
+								<input type="email" ng-model="votingBookConfirmVote.vote.user.email" class="form-control" required placeholder="Email" name="email"/>
 							</div>
-							<div class="controls" ng-show="isLoggedIn">
-								<h2>{{user.email}}</h2>
+							<div class="controls" ng-show="votingBookConfirmVote.isLoggedIn">
+								<h2>{{votingBookConfirmVote.user.email}}</h2>
 							</div>
 						</div>  
 						<br/>
@@ -56,17 +56,16 @@
 		     </div>
 		</section>
 		
-		<section class="content" ng-show="confirmedVote"> 
-            <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
+		<section class="content" ng-show="votingBookConfirmVote.confirmedVote"> 
+            <a href="#/votacao_livro/lista-de-livro/votacao/{{votingBookConfirmVote.votingBook.voting.id}}" class="btn btn-danger btn-xs"> 
 		  		<i class="fa fa-reply"></i>  Votar novamente 
             </a>             		
 			<h1 class="text-danger">
 				Seu voto foi computado! 
-				<small ng-show="completeRegistration"> <a href="#/usuario/cadastro/{{vote.user.email}}"> Complete seu cadastro...</a></small> 
+				<small ng-show="votingBookConfirmVote.completeRegistration"> <a href="#/usuario/cadastro/{{votingBookConfirmVote.vote.user.email}}"> Complete seu cadastro...</a></small> 
 			</h1>
-			
 	        <section class="content"> 
-	              <div ng-repeat="vb in votingBooks">
+	              <div ng-repeat="vb in votingBookConfirmVote.votingBooks">
 	                  <div class="col-lg-2 col-sm-2 col-md-3 col-xs-8">                  	   
 	                      <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
 					       <p class="text-center">
@@ -75,8 +74,7 @@
 					       </p>
 	                  </div>
 			     </div>
-			</section>			
-			
+			</section>		
 		</section>
 
 	</aside>

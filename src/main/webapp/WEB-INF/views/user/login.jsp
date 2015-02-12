@@ -1,22 +1,22 @@
 
-        <div class="form-box" id="login-box">
+        <div class="form-box" id="login-box" ng-controller="UserLoginController as userLoginCtrl">
             <div class="header">Login</div>
             
-	        <div class="alert alert-danger alert-dismissable" ng-show="messageLogin != null">
+	        <div class="alert alert-danger alert-dismissable" ng-show="userLoginCtrl.messageLogin != null">
 	            <i class="fa fa-ban"></i>
 	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	            {{messageLogin}}
+	            {{userLoginCtrl.messageLogin}}
 	        </div>
 	        
-            <form ng-submit="login(user)" >
+            <form ng-submit="userLoginCtrl.login(userLoginCtrl.user)" >
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="text" name="email" ng-model="user.email" class="form-control" placeholder="Email"/>
+                        <input type="text" name="email" ng-model="userLoginCtrl.user.email" class="form-control" placeholder="Email"/>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" ng-model="user.password" class="form-control" placeholder="Senha"/>
+                        <input type="password" name="password" ng-model="userLoginCtrl.user.password" class="form-control" placeholder="Senha"/>
                     </div>          
-                    <div class="form-group">
+                    <div class="form-group"> 
                         <input type="checkbox" name="remember_me"/> Lembrar
                     </div>
                 </div>

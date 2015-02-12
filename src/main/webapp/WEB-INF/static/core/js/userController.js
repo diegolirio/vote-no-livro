@@ -1,44 +1,47 @@
 app.controller('UserController', ['$scope', 'UserService',
                                   function($scope, UserService) {
 	
-	$scope.isLoggedIn = false; 
+	var self = this;
+	self.isLoggedIn = false; 
 	
 	UserService.session().then(function(resp) {
 //		$scope.isLoggedIn = UserService.isLoggedIn;
-		$scope.isLoggedIn = true;
-		$scope.user = resp.data;
+		self.isLoggedIn = true;
+		self.user = resp.data;
 	});
 	
 }])
 .controller('UserCadastreController', ['$scope', '$routeParams', '$location', 'UserService', 
                                           function($scope, $routeParams, $location, UserService) {
 	
-	$scope.loadUserCadastre = function() {
-		if($routeParams.email != undefined) {
-			UserService.getUserByEmail($routeParams.email).then(function(resp) {
-				$scope.user = resp.data; 
-			});
-		} else $scope.user = {}; 
-	};
+	var self = this;
+	
+	if($routeParams.email != undefined) {
+		UserService.getUserByEmail($routeParams.email).then(function(resp) {
+			self.user = resp.data; 
+		});
+	} else self.user = {}; 	
 
-	$scope.saveUser = function(user, confirmPassword) {
+	self.saveUser = function(user, confirmPassword) {
 		if(user.password == confirmPassword) {
 			UserService.insert(user).then(function(resp) {
 				alert('Usuario gravado com sucesso');
 				$location.path("/usuario/cadastro/"+user.email);
 			});
 		} else alert("Senha confirmada não confere!");
-	 };	
-	 
+	 };		 
 	
 }])
 .controller('UserLoginController', ['$scope', 'UserService', function($scope, UserService) {
+		
+	var self = this;
 	
-	$scope.login = function(user) {
+	self.login = function(user) {
 		//$scope.showLoader();
 		UserService.login(user).then(function(resp) {
 			//$location.path("/");
-			$scope.messageLogin = resp.data;
+			self.messageLogin = resp.data;
+			//if (!self.messageLogin) alert(self.messageLogin);
  			if(JSON.parse(resp.data) == true)  
 				window.location.href = SERVER_APP;
 		});			

@@ -40,9 +40,12 @@
 	             		<input type="hidden" ng-model="vote.votingBook.id" value="{{votingBook.id}}"/>
 	             		
 						<div class="control-group">
-							<div class="controls" >  
+							<div class="controls" ng-hide="isLoggedIn">  
 								<label>Digite seu Email Para computar o Voto</label> 
-								<input type="email" ng-model="vote.user.email" ng-value="${user.email}" class="form-control" required placeholder="Email" name="email"/>
+								<input type="email" ng-model="vote.user.email" class="form-control" required placeholder="Email" name="email"/>
+							</div>
+							<div class="controls" ng-show="isLoggedIn">
+								<h2>{{user.email}}</h2>
 							</div>
 						</div>  
 						<br/>

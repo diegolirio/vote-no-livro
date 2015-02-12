@@ -1,10 +1,10 @@
-<div ng-init="loadVotingBookList()" >
+<div ng-controller="VotingBookListByVoting as votingBookListByVoting" >
 
 	<aside class="right-side" >
 
          <section class="content-header">
              <h1>
-                 Votação <small> {{voting.description}}</small>
+                 Votação <small>{{votingBookListByVoting.voting.description}}</small>
              </h1>
              <ol class="breadcrumb">
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -14,7 +14,7 @@
          </section>
 
          <section class="content">  
-              <div ng-repeat="vb in votingBooks"> 
+              <div ng-repeat="vb in votingBookListByVoting.votingBooks"> 
                   <div class="col-lg-2 col-sm-2 col-md-3 col-xs-8">                  	   
                       <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
 					  <a href="#/votacao_livro/{{vb.id}}" class="btn btn-success btn-block"> 

@@ -33,11 +33,11 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="skin-blue" ng-controller="UserController">
+    <body class="skin-blue" ng-controller="UserController as userCtrl">
     
 		<jsp:include page="_menu.jsp"></jsp:include>
 		
-        <div class="wrapper row-offcanvas row-offcanvas-left">
+        <div class="wrapper row-offcanvas row-offcanvas-left"> 
         
             <!-- Left side column. contains the logo and sidebar -->
 			<jsp:include page="_menu_left.jsp"></jsp:include>
