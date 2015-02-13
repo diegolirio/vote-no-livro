@@ -38,5 +38,8 @@ public class VotingService {
 		return this.votingDao.get(Voting.class, id);
 	}
 
+	public void delete(Voting voting) {
+		this.votingDao.delete(Voting.class, voting.getId());
+	}
 	
 }

@@ -11,7 +11,7 @@ app.config(['$routeProvider', function($routeProvider) {
 					{ controller: 'VotingListController', templateUrl: SERVER_APP + '/votacao/s' })
 			.when('/votacao/nova', 
 					{ controller: 'VotingCadastreController', templateUrl: SERVER_APP + '/votacao/system/nova' })
-			.when('/votacao/edit/:id', 
+			.when('/votacao/editar/:id', 
 					{ controller: 'VotingCadastreController', templateUrl: SERVER_APP + '/votacao/system/nova' })
 					
 			// votingBook

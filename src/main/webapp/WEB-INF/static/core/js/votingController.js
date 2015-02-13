@@ -25,22 +25,29 @@ app.controller('VotingListController', ['$scope', '$http', 'VotingService',
 	}
 	
 	self.save = function(voting) {
-		// colocar ususario logado no service para busca!!!
+		// TODO: colocar ususario logado no userService para busca!!!
 		voting.userOwner = $scope.user;
 		voting.finalized = false;
 		voting.countTotal = 0;
-		//alert(JSON.stringify(voting));
 		
 		if (voting.userOwner == null) {
 			alert('Realize o login para criar uma votação!');
 		} else {
 			VotingService.save(voting).then(function(resp) {
-				//alert(JSON.stringify(resp.data));
 				var _voting = resp.data;
-				$location.path('/votacao/edit/'+_voting.id);
+				$location.path('/votacao/editar/'+_voting.id);
 			});
 		}
 		
+	};
+	
+	self.del = function(voting) {
+		alert(JSON.stringify(voting));
+		VotingService.del(voting).then(function(resp) {
+			$location.path('/');
+		}).error(function(data, status, headers, config) {
+			alert(data); 
+		});
 	};
 	
 	

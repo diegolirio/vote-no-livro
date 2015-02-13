@@ -65,4 +65,14 @@ public class VotingController {
 		}
 	}
 	
+	@RequestMapping(value="/delete/json", method=RequestMethod.PUT, consumes="application/json", produces="application/json")
+	public ResponseEntity<String> delete(@RequestBody Voting voting) {
+		try {
+			this.votingService.delete(voting);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 }

@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<aside class="right-side" ng-controller="VotingListController as votingListCtrl">
+<aside ng-controller="VotingListController as votingListCtrl" class="right-side" >
 
          <!-- Content Header (Page header) -->
          <section class="content-header">
@@ -28,6 +28,7 @@
                           <div class="inner">
                               <h3>
                                   <a href="#/votacao_livro/lista-de-livro/votacao/{{v.id}}"><span style="color:white;"> {{v.description}}</span></a>
+                                  <small ng-show="userCtrl.user != null && userCtrl.user.id == v.userOwner.id"><a href="#/votacao/editar/{{v.id}}">Editar</a></small>
                               </h3>
                               <p> 
                                   <a href="#/votacao_livro/lista-de-livro/votacao/{{v.id}}"><span style="color:white;">Clique para votar</span></a>
