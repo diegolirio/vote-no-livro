@@ -26,3 +26,7 @@ Votacao de Livros
 Um pouco de SCRUM, Kanban portatil e Testes unitários.
 
 * Deploy em http://votenolivro.diegolirio.com/votenolivro
+ 
+Diagrama de classe 
+https://drive.google.com/file/d/0B0Kol-8wAeBSSXV0QTRMczV1dFE/view?usp=sharing
+
