@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.diegolirio.votenolivro.model.Author;
 import com.diegolirio.votenolivro.model.Book;
 import com.diegolirio.votenolivro.model.Publisher;
+import com.diegolirio.votenolivro.model.User;
 import com.diegolirio.votenolivro.model.Voting;
 import com.diegolirio.votenolivro.model.VotingBook;
 import com.diegolirio.votenolivro.service.AuthorService;
 import com.diegolirio.votenolivro.service.BookService;
 import com.diegolirio.votenolivro.service.PublisherService;
+import com.diegolirio.votenolivro.service.UserService;
 import com.diegolirio.votenolivro.service.VotingBookService;
 import com.diegolirio.votenolivro.service.VotingService;
 
@@ -44,6 +46,9 @@ public class HomeController {
 
 	@Autowired
 	private VotingBookService votingBookService;
+
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -65,11 +70,19 @@ public class HomeController {
 	@RequestMapping(value = "/pre_cadastro", method = RequestMethod.GET)
 	public String precadastro() {
 		
+		User userOwner = this.userService.getUserByEmail("diegolirio.dl@gmail.com");
+		if(userOwner == null) {
+			userOwner = new User();
+			userOwner.setEmail("diegolirio.dl@gmail.com"); 
+			this.userService.save(userOwner);
+		}
+		
 		Voting voteNoLivro = this.votingService.getByDescription("Vote no Livro");
 		if(voteNoLivro == null) {
 			voteNoLivro = new Voting();
 			voteNoLivro.setDescription("Vote no Livro");
 			voteNoLivro.setFinalized(false);
+			voteNoLivro.setUserOwner(userOwner);
 			this.votingService.save(voteNoLivro);
 		}
 		

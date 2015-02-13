@@ -8,6 +8,7 @@ app.controller('UserController', ['$scope', 'UserService',
 //		$scope.isLoggedIn = UserService.isLoggedIn;
 		self.isLoggedIn = true;
 		self.user = resp.data;
+		$scope.user = resp.data;
 	});
 	
 }])

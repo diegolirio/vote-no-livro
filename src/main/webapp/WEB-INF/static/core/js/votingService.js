@@ -10,7 +10,11 @@ app.factory('VotingService', ['$http', function($http) {
 		
 		getVoting 	  : function(id) {
 							return $http.get(SERVER_APP + '/votacao/get/'+id+'/json');
-						}
+						},
+						
+		save : function(voting) {
+					return $http.post(SERVER_APP + '/votacao/save/json', voting);
+			   }
 	};
 	 
 }]);

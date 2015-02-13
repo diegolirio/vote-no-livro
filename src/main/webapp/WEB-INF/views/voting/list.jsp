@@ -21,8 +21,8 @@
          <section class="content">
 
               <!-- Small boxes (Stat box) -->
-              <div class="row" ng-repeat="v in votingListCtrl.votings">
-                  <div class="col-lg-6">
+              <div class="row">
+                  <div ng-repeat="v in votingListCtrl.votings" class="col-lg-6 col-md-6">
                       <!-- small box -->
                       <div class="small-box bg-aqua">
                           <div class="inner">

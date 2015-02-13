@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
@@ -24,6 +25,9 @@ public class Voting {
 	private boolean finalized = false;
 
 	private long countTotal;
+	
+	@ManyToOne
+	private User userOwner;
 
 	public Voting() {}
 	
@@ -73,6 +77,21 @@ public class Voting {
 
 	public void setCountVotes(long countTotal) {
 		this.countTotal = countTotal;
+	}
+
+	public User getUserOwner() {
+		return userOwner;
+	}
+
+	public void setUserOwner(User userOwner) {
+		this.userOwner = userOwner;
+	}
+
+	@Override
+	public String toString() {
+		return "Voting [id=" + id + ", description=" + description
+				+ ", finalized=" + finalized + ", countTotal=" + countTotal
+				+ ", userOwner=" + userOwner + "]";
 	}
 	
 	

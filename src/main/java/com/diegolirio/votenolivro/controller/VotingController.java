@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,6 +53,16 @@ public class VotingController {
 	@RequestMapping(value="/system/nova", method=RequestMethod.GET)
 	public ModelAndView pageNova() {
 		return new ModelAndView("voting/form");
+	}
+	
+	@RequestMapping(value="/save/json", method=RequestMethod.POST, consumes="application/json", produces="application/json" )
+	public ResponseEntity<String> save(@RequestBody Voting voting) {
+		try {
+			this.votingService.save(voting);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(voting), HttpStatus.CREATED);
+		} catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 }
