@@ -35,6 +35,7 @@ app.controller('VotingListController', ['$scope', '$http', 'VotingService',
 		} else {
 			VotingService.save(voting).then(function(resp) {
 				var _voting = resp.data;
+				alert('Votação salvo com sucesso!'); 
 				$location.path('/votacao/editar/'+_voting.id);
 			});
 		}

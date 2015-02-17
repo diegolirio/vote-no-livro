@@ -41,7 +41,7 @@
 			<div class="form-actions">
 				<button type="submit" class="btn btn-success">Salvar</button>
 				<a href="#/" class="btn btn-default">Voltar</a> 
-				<a ng-show="votingCadastreCtrl.voting.id > 0" class="btn btn-info" href="#/votacao/votacao_livro/{{votingCadastreCtrl.voting.id}}/add/livro">Add Livro</a>
+				<a ng-show="votingCadastreCtrl.voting.id > 0" class="btn btn-info" href="#/votacao_livro/votacao/{{votingCadastreCtrl.voting.id}}/add/livro">Add Livro</a>
 				
 				<a ng-show="votingCadastreCtrl.voting.id > 0" ng-click="votingCadastreCtrl.del(votingCadastreCtrl.voting)" class="btn btn-danger pull-right" >Excluir Votação</a>  
 			</div>

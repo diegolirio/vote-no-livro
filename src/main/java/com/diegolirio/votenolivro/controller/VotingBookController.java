@@ -55,4 +55,9 @@ public class VotingBookController {
 		return "voting-book/list";
 	}		
 	
+	@RequestMapping(value="/add/livro", method=RequestMethod.GET)
+	public String pageVotingAddBook() {
+		return "voting-book/add-book";
+	}
+	
 }

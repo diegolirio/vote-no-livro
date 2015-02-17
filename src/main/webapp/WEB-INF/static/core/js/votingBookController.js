@@ -41,6 +41,12 @@ app.controller('VotingBookListByVoting', ['$scope', '$routeParams', 'VotingBookS
 				});
 			});
 		};
+}]).
+controller('VotingBookVotingAddBookController', ['$routeParams', function($routeParams) {
+	
+	var self = this;
+	alert($routeParams.votingId);
+	
 }]);
 	
 	
