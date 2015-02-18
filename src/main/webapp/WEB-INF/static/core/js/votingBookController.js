@@ -42,10 +42,58 @@ app.controller('VotingBookListByVoting', ['$scope', '$routeParams', 'VotingBookS
 			});
 		};
 }]).
-controller('VotingBookVotingAddBookController', ['$routeParams', function($routeParams) {
+controller('VotingBookVotingAddBookController', ['$routeParams', '$window', 'VotingBookService', 'VotingService', 'BookService', 
+                                                 function($routeParams, $window, VotingBookService, VotingService, BookService) {
 	
 	var self = this;
-	alert($routeParams.votingId);
+	//alert($routeParams.votingId);
+	
+	self.votingBook = {};	
+	
+	self.reload = function() {
+		// get list voting book
+		VotingBookService.getVotingBookListByVoting($routeParams.votingId).then(function(resp) {
+			self.votingBooks = resp.data;
+		});
+		// get all books
+		BookService.getAllBooks().then(function(resp) {
+			self.books = resp.data;
+		});		
+	};	
+	
+	self.searchBook = function(word) {
+		BookService.getBookContainsTitle(word).then(function(resp) {
+			self.books = resp.data;
+		});
+	};
+	
+	self.addVotacaoLivro = function(voting, book) {
+		self.votingBook.voting = voting;
+		self.votingBook.book = book;
+		VotingBookService.save(self.votingBook).then(function(resp) {
+			//$window.location.reload();	
+			self.reload();
+		});
+	};
+	
+	self.remove = function(votingBook) {
+		VotingBookService.del(votingBook).then(function(resp) {
+			//$window.location.reload();
+			self.reload();
+		});
+	};
+	
+	
+	// ########## Init ##############	
+	self.init = function() {
+		// get voting by id
+		VotingService.getVoting($routeParams.votingId).then(function(resp) {
+			self.voting = resp.data;
+		});		
+		self.reload();		
+	};
+	self.init();
+	// ########## End Init ##############		
 	
 }]);
 	

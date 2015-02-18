@@ -50,6 +50,12 @@ public class VotingBook {
 	public void setCountVotes(long countVotes) {
 		this.countVotes = countVotes;
 	}
+
+	@Override
+	public String toString() {
+		return "VotingBook [id=" + id + ", voting=" + voting + ", book=" + book
+				+ ", countVotes=" + countVotes + "]";
+	}
 	
 	
 	

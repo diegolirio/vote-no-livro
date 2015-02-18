@@ -1,5 +1,7 @@
 package com.diegolirio.votenolivro.dao;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
@@ -27,6 +29,15 @@ public class BookDao extends AbstractGenericDao<Book> {
 		} catch(NoResultException e) {
 			return null;
 		}
+	}
+
+	public List<Book> getListContainsTitle(String title) {
+		String sql = "Select b from Book b where b.title like :title";
+		Query query = super.manager.createQuery(sql);
+		query.setParameter("title", "%" + title + "%");
+		@SuppressWarnings("unchecked")
+		List<Book> list = (List<Book>) query.getResultList();
+		return list;
 	}
 
 }

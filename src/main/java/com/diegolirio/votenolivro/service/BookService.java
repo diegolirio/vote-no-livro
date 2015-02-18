@@ -1,5 +1,7 @@
 package com.diegolirio.votenolivro.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,14 @@ public class BookService {
 
 	public Book get(long id) {
 		return this.bookDao.get(Book.class, id);
+	}
+
+	public List<Book> getList() {
+		return this.bookDao.getList(Book.class);
+	}
+
+	public List<Book> getListContainsTitle(String title) {
+		return this.bookDao.getListContainsTitle(title);
 	}
 
 	

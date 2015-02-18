@@ -68,7 +68,9 @@
 		<!-- user -->
 		<script src="${pageContext.request.contextPath}/static/core/js/userService.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/js/userController.js"></script>	
-
+		<!-- book -->
+		<script src="${pageContext.request.contextPath}/static/core/js/bookService.js"></script>
+  
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- jQuery UI 1.10.3 -->

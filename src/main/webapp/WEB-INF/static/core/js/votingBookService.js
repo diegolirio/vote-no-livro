@@ -7,7 +7,15 @@ app.factory('VotingBookService', ['$http', function($http) {
 									
 		getVotingBook : function(id) {
 							return $http.get(SERVER_APP + '/votacao_livro/'+id+'/json');
-						}
+						},
+						
+		save : function(votingBook) {
+					return $http.post(SERVER_APP + '/votacao_livro/save/json', votingBook);
+		},
+		
+		del : function(votingBook) {
+				return $http.post(SERVER_APP + '/votacao_livro/delete/json', votingBook);
+		}
 	};
 	
 }]);

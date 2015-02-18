@@ -39,5 +39,9 @@ public class VotingBookService {
 		return this.votingBookDao.get(VotingBook.class, id);
 	}
 
+	public void delete(VotingBook votingBook) {
+		this.votingBookDao.delete(VotingBook.class, votingBook.getId());
+	}
+
 	
 }

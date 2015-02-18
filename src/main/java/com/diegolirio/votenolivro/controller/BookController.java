@@ -1,5 +1,7 @@
 package com.diegolirio.votenolivro.controller;
 
+import java.util.List;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,5 +31,27 @@ public class BookController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
 	}		
+	
+	@RequestMapping(value="/get/all/json", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getAll() {
+		try {
+			List<Book> list = this.bookService.getList();
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(list), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value="/get/contains/title/json", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getContainsTitle(String titleContains) {
+		try {
+			List<Book> list = this.bookService.getListContainsTitle(titleContains);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(list), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 }
