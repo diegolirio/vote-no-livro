@@ -47,7 +47,7 @@
 	<!--                                         <a href="#">Followers</a> -->
 	                                    </div>
 	                                    <div class="col-xs-4 text-center">
-	                                        <a href="#">Minhas votações</a>
+	                                        <a href="#/votacao/my">Minhas votações</a>
 	                                    </div>
 	                                    <div class="col-xs-4 text-center">
 	<!--                                         <a href="#">Friends</a> -->

@@ -16,6 +16,7 @@ import com.diegolirio.votenolivro.model.Book;
 import com.diegolirio.votenolivro.model.Publisher;
 import com.diegolirio.votenolivro.model.User;
 import com.diegolirio.votenolivro.model.Voting;
+import com.diegolirio.votenolivro.model.Voting.Status;
 import com.diegolirio.votenolivro.model.VotingBook;
 import com.diegolirio.votenolivro.service.AuthorService;
 import com.diegolirio.votenolivro.service.BookService;
@@ -81,7 +82,7 @@ public class HomeController {
 		if(voteNoLivro == null) {
 			voteNoLivro = new Voting();
 			voteNoLivro.setDescription("Vote no Livro");
-			voteNoLivro.setFinalized(false);
+			voteNoLivro.setStatus(Status.EM_ANDAMENTO);
 			voteNoLivro.setUserOwner(userOwner);
 			this.votingService.save(voteNoLivro);
 		}

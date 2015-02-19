@@ -4,9 +4,12 @@
 
          <!-- Content Header (Page header) -->
          <section class="content-header">
+
              <h1>
-                 Votação <small> {{votingBookConfirmVote.votingBook.voting.description}}</small>
-             </h1>
+                 <small>Votação</small> {{votingBookConfirmVote.votingBook.voting.description}} 
+             </h1>             
+             
+             
              <ol class="breadcrumb">
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
                  <li><a href="${pageContext.request.contextPath}"><i class="fa fa-dashboard"></i> Votações</a></li>

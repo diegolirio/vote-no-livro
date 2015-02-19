@@ -73,9 +73,11 @@ controller('VotingBookVotingAddBookController', ['$routeParams', '$window', 'Vot
 		VotingBookService.save(self.votingBook).then(function(resp) {
 			//$window.location.reload();	
 			self.reload();
+		}, function(error) {
+			alert('Erro: ' + error.data); 
 		});
 	};
-	
+	 
 	self.remove = function(votingBook) {
 		VotingBookService.del(votingBook).then(function(resp) {
 			//$window.location.reload();
@@ -83,6 +85,18 @@ controller('VotingBookVotingAddBookController', ['$routeParams', '$window', 'Vot
 		});
 	};
 	
+	self.concluir = function(voting) {
+		if(self.votingBooks.length >= 2) {
+			voting.status = 'EM_ANDAMENTO';
+			VotingService.save(voting).then(function(resp) {
+				$window.location.reload();
+			}, function(error) {
+				alert('Erro: ' + error.data);
+			});
+		} else {
+			alert('Votação deve conter no minimo 2 livros!');
+		}
+	};
 	
 	// ########## Init ##############	
 	self.init = function() {

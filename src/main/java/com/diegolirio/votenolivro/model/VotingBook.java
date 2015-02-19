@@ -1,25 +1,31 @@
 package com.diegolirio.votenolivro.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"voting_id", "book_id"})})
 public class VotingBook {
 
 	@Id @GeneratedValue
 	private long id;
-	
-	@ManyToOne
+	 
+	@ManyToOne 
+	@JoinColumn(name="voting_id", nullable=false)
 	private Voting voting;
 	
 	@ManyToOne
+	@JoinColumn(name="book_id", nullable=false)
 	private Book book;
 
 	private long countVotes;
 
-	public long getId() {
+	public long getId() { 
 		return id;
 	}
 

@@ -2,7 +2,10 @@ package com.diegolirio.votenolivro.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -12,6 +15,10 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
 public class Voting {
+	
+	public enum Status {
+		PENDENTE, EM_ANDAMENTO, FINALIZADO
+	}	
 
 	@Id @GeneratedValue
 	private long id;
@@ -22,7 +29,9 @@ public class Voting {
 	@OneToMany(mappedBy="voting")
 	private Set<VotingBook> votingBooks;
 	
-	private boolean finalized = false;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, columnDefinition = "varchar(20) default 'PENDENTE'")	
+	private Status status;
 
 	private long countTotal;
 	
@@ -59,12 +68,12 @@ public class Voting {
 		this.votingBooks = votingBooks;
 	}
 
-	public boolean isFinalized() {
-		return finalized;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setFinalized(boolean finalized) {
-		this.finalized = finalized;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public long getCountTotal() {
@@ -90,9 +99,11 @@ public class Voting {
 	@Override
 	public String toString() {
 		return "Voting [id=" + id + ", description=" + description
-				+ ", finalized=" + finalized + ", countTotal=" + countTotal
+				+ ", status=" + status + ", countTotal=" + countTotal
 				+ ", userOwner=" + userOwner + "]";
 	}
+
+	
 	
 	
 	

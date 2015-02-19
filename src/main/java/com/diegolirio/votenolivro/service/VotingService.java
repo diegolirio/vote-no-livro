@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.diegolirio.votenolivro.dao.VotingDao;
+import com.diegolirio.votenolivro.model.User;
 import com.diegolirio.votenolivro.model.Voting;
+import com.diegolirio.votenolivro.model.Voting.Status;
 
 @Service("votingService")
 public class VotingService {
@@ -40,6 +42,16 @@ public class VotingService {
 
 	public void delete(Voting voting) {
 		this.votingDao.delete(Voting.class, voting.getId());
+	}
+
+
+	public List<Voting> getListByStatus(Status status) {
+		return this.votingDao.getListByStatus(status);
+	}
+
+
+	public List<Voting> getListByUser(User user) {
+		return this.votingDao.getListByUser(user);
 	}
 	
 }

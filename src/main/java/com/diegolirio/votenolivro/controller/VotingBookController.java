@@ -2,7 +2,11 @@ package com.diegolirio.votenolivro.controller;
 
 import java.util.List;
 
+import javax.persistence.PersistenceException;
+
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.diegolirio.votenolivro.model.Book;
 import com.diegolirio.votenolivro.model.Voting;
+import com.diegolirio.votenolivro.model.Voting.Status;
 import com.diegolirio.votenolivro.model.VotingBook;
 import com.diegolirio.votenolivro.service.VotingBookService;
 
@@ -21,6 +26,8 @@ import com.diegolirio.votenolivro.service.VotingBookService;
 @RequestMapping("/votacao_livro")
 public class VotingBookController {
 
+	private static final Logger logger = LoggerFactory.getLogger(VotingBookController.class);
+	
 	@Autowired
 	private VotingBookService votingBookService;
 
@@ -67,7 +74,13 @@ public class VotingBookController {
 			// TODO: impedir de add 2 iguais...
 			this.votingBookService.save(votingBook);		
 			return new ResponseEntity<String>(HttpStatus.CREATED);
-		} catch(Exception e) {
+		} catch(PersistenceException e) {
+			e.printStackTrace();
+			String msg = e.getMessage().contains("ConstraintViolationException") ? "Livro já adicionado!" : e.getMessage();
+			logger.error(msg);
+			return new ResponseEntity<String>(msg, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch(Exception e) {	
+			System.out.println(e.getClass()); 
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}

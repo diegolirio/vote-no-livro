@@ -1,6 +1,7 @@
 package com.diegolirio.votenolivro.builder;
 
 import com.diegolirio.votenolivro.model.Voting;
+import com.diegolirio.votenolivro.model.Voting.Status;
 
 public class VotingBuilder {
 	
@@ -10,7 +11,7 @@ public class VotingBuilder {
 		voting.setCountTotal(2l);
 		voting.setCountVotes(2l);
 		voting.setDescription("Vote no Livro");
-		voting.setFinalized(false);
+		voting.setStatus(Status.EM_ANDAMENTO);
 		return voting;
 	}
 

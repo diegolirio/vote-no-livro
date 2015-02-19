@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diegolirio.votenolivro.model.User;
 import com.diegolirio.votenolivro.model.Voting;
+import com.diegolirio.votenolivro.model.Voting.Status;
 import com.diegolirio.votenolivro.service.VotingService;
 
 @Controller
@@ -27,6 +29,11 @@ public class VotingController {
 	public ModelAndView pageListVoting() {
 		return new ModelAndView("voting/list");
 	}
+
+	@RequestMapping(value="/my", method=RequestMethod.GET)
+	public ModelAndView pageMyListVoting() {
+		return new ModelAndView("voting/my");
+	}	
 	
 	@RequestMapping(value="/get/list/json", method=RequestMethod.GET, produces="application/json")
 	public ResponseEntity<String> getListJSON() {
@@ -37,6 +44,30 @@ public class VotingController {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
+	}
+	
+	@RequestMapping(value="/get/list/by/status/{status}/json", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getListbyStatus(@PathVariable("status") Status status) {
+		try {
+			List<Voting> list = this.votingService.getListByStatus(status);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(list), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	 
+	@RequestMapping(value="/get/list/by/user/{userId}/json", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getListByUser(@PathVariable("userId") long userId) {
+		try {
+			User user = new User();
+			user.setId(userId);
+			List<Voting> list = this.votingService.getListByUser(user);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(list ), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@RequestMapping(value="/get/{id}/json", method=RequestMethod.GET, produces="application/json")

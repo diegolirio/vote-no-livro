@@ -32,6 +32,11 @@
                                 <i class="fa fa-globe"></i> <span>Votações</span> <!-- <small class="badge pull-right bg-green">novo</small> -->
                             </a>
                         </li>
+                        <li ng-show="userCtrl.user != null">
+                        	<a href="#/votacao/my">
+                        		<i class="fa fa-star-o"></i> <span>Minhas votações</span>
+                        	</a>
+                        </li>                        
                         <!-- 
                         <li>
                             <a href="pages/widgets.html">

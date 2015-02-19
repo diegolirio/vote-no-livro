@@ -8,12 +8,20 @@ app.factory('VotingService', ['$http', function($http) {
 	return {
 		getListVoting : _getListVoting,
 		
+		getListVoting : function(status) {
+			return $http.get(SERVER_APP + '/votacao/get/list/by/status/'+status+'/json');
+		},
+		
+		getListVotingByUser : function(userId) {
+			return $http.get(SERVER_APP + '/votacao/get/list/by/user/'+userId+'/json');
+		},
+		
 		getVoting 	  : function(id) {
-							return $http.get(SERVER_APP + '/votacao/get/'+id+'/json');
+			return $http.get(SERVER_APP + '/votacao/get/'+id+'/json');
 		},
 						
-		save : function(voting) {
-					return $http.post(SERVER_APP + '/votacao/save/json', voting);
+		save 		  : function(voting) {
+			return $http.post(SERVER_APP + '/votacao/save/json', voting);
 		},
 			   
 		del : function(voting) {
