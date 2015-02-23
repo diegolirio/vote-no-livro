@@ -22,6 +22,9 @@ app.config(['$routeProvider', function($routeProvider) {
 					{ controller: 'VotingBookConfirmVote', templateUrl: SERVER_APP + '/votacao_livro/confirmar' })
 			.when('/votacao_livro/votacao/:votingId/add/livro', 
 					{ controller: 'VotingBookVotingAddBookController', templateUrl: SERVER_APP + '/votacao_livro/add/livro' })
+			// Book
+			.when('/livro/form/:id',
+					{ controller: 'BookFormController', templateUrl: SERVER_APP + '/livro/form' })
 			// usuario
 			.when('/usuario/cadastro/:email',
 					{ controller: 'UserCadastreController', templateUrl: SERVER_APP + '/usuario/cadastro' })

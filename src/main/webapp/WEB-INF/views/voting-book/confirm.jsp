@@ -45,7 +45,7 @@
 						<div class="control-group">
 							<div class="controls" ng-hide="votingBookConfirmVote.isLoggedIn">  
 								<label>Digite seu Email Para computar o Voto</label> 
-								<input type="email" ng-model="votingBookConfirmVote.vote.user.email" class="form-control" required placeholder="Email" name="email"/>
+								<input ng-readonly="user != null" ng-model="votingBookConfirmVote.vote.user.email" type="email" class="form-control" required placeholder="Email"/>
 							</div>
 							<div class="controls" ng-show="votingBookConfirmVote.isLoggedIn">
 								<h2>{{votingBookConfirmVote.user.email}}</h2>

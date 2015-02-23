@@ -15,15 +15,17 @@ app.controller('VotingBookListByVoting', ['$scope', '$routeParams', 'VotingBookS
 }])
 .controller('VotingBookConfirmVote', ['$scope', '$routeParams', 'VotingBookService', 'VoteService', 'UserService', 
 	                                      function($scope, $routeParams, VotingBookService, VoteService, UserService) {
-		
+		// ==== Init =====
 		var self = this;
-	
+		
+		self.vote = {};
 		self.confirmedVote = false;
-		//$scope.vote.user.email = $scope.user.email;
+		self.vote.user = $scope.user;
+		
 		VotingBookService.getVotingBook($routeParams.id).then(function(resp) {
 			self.votingBook = resp.data;
 		});
-		
+		// ==== End Init =====
 		
 		self.computeVote = function() {
 			self.vote.votingBook = self.votingBook;

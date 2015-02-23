@@ -54,4 +54,9 @@ public class BookController {
 		}
 	}
 	
+	@RequestMapping(value="/form", method=RequestMethod.GET)
+	public String pageForm() {
+		return "book/form";
+	}
+	
 }
