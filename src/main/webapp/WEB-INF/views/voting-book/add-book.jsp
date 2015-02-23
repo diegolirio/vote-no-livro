@@ -1,7 +1,6 @@
 <aside ng-controller="VotingBookVotingAddBookController as votingBookVotingAddBookCtrl" class="right-side" >
 
-	<span class="label label-primary">Livros da Votação (adicionar/remover)</span> 
-	
+ 	
 	<h1 class="text-success">{{votingBookVotingAddBookCtrl.voting.description}} <small class="label label-default" style="font-size:12px;">{{votingBookVotingAddBookCtrl.voting.status}}</small> </h1>
 	<h3 class="text-info">Livros adicionados </h3>
 	
@@ -16,11 +15,16 @@
 		</li>
 	</ul>
 	
-	<a ng-href ng-click="votingBookVotingAddBookCtrl.concluir(votingBookVotingAddBookCtrl.voting)" ng-show="votingBookVotingAddBookCtrl.voting.status == 'PENDENTE'" class="btn btn-success">Concluir</a>
-	
 	<hr/>
 	
-	<h1 class="text-danger">Adicionar livros</h1>
+	<h1 class="text-danger">
+		Adicionar livros... 
+		<small>
+			<a ng-href="#/livro/form/0" ng-show="votingBookVotingAddBookCtrl.voting.status == 'PENDENTE'">
+				<span class="glyphicon glyphicon-plus"></span> Cadastrar Novo Livro
+			</a>
+		</small>
+	</h1>
 	
 	<input ng-change="votingBookVotingAddBookCtrl.searchBook(votingBookVotingAddBookCtrl.word)" ng-model="votingBookVotingAddBookCtrl.word" type="search" size="50" placeholder="Pesquisar">
 	
@@ -36,5 +40,6 @@
     		</div>
 	</section>	
 	
+	<a ng-href ng-click="votingBookVotingAddBookCtrl.concluir(votingBookVotingAddBookCtrl.voting)" ng-show="votingBookVotingAddBookCtrl.voting.status == 'PENDENTE'" class="btn btn-danger btn-block">Concluir</a>
 	
 </aside>

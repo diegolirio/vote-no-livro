@@ -71,10 +71,10 @@
 	              <div ng-repeat="vb in votingBookConfirmVote.votingBooks">
 	                  <div class="col-lg-2 col-sm-2 col-md-3 col-xs-8">                  	   
 	                      <p><img src="{{vb.book.imgUrl}}" class="img-thumbnail img-responsive" title="{{vb.book.title}}" /></p>
-					       <p class="text-center">
+					       <h3 class="text-center">
 					       		{{vb.countVotes * 100 / vb.voting.countTotal | number:0 }} % 
 					       		<span class="text-muted">({{vb.countVotes}})</span>
-					       </p>
+					       </h3>
 	                  </div>
 			     </div>
 			</section>		
