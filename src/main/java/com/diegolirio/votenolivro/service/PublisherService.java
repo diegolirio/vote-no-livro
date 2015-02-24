@@ -1,5 +1,7 @@
 package com.diegolirio.votenolivro.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class PublisherService {
 
 	public Publisher getByName(String name) {
 		return this.publisherDao.getByName(name);
+	}
+
+	public List<Publisher> getList() {
+		return this.publisherDao.getList(Publisher.class);
 	}
 
 	

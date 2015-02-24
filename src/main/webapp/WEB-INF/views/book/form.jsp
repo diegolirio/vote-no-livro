@@ -19,6 +19,13 @@
 	 		
 	 		<div ng-show="bookFormCtrl.book.id > 0" class="row">
 				<div class="control-group col-md-2">
+					<img ng-src="{{bookFormCtrl.book.imgUrl}}">
+					<a href="#/" class="btn btn-default">{{bookFormCtrl.book.imgUrl == null ? 'Enviar' : 'Alterar'}} Imagem do Livro</a>
+				</div>	 
+			</div>	 		
+	 		
+	 		<div ng-show="bookFormCtrl.book.id > 0" class="row">
+				<div class="control-group col-md-2">
 					<label class="control-label">ID:</label>
 					<div class="controls" >
 						<input type="text" ng-model="bookFormCtrl.book.id" class="form-control" disabled />
@@ -33,15 +40,39 @@
 					</div>
 				</div>	 
 			</div>
-
+			<div class="row">
+				<div class="control-group col-md-2">
+					<label class="control-label">Ano:</label>  
+					<div class="controls" >
+						<input type="number" ng-model="bookFormCtrl.book.year" class="form-control" required maxlength="4"/> 
+					</div>
+				</div>	 
+			</div>	
+			<div class="row">
+				<div class="control-group col-md-5">
+					<label class="control-label">Editora:</label>
+					<div class="controls" >
+						<select ng-model="bookFormCtrl.book.publisher" ng-options="p.name for p in bookFormCtrl.publishers" class="form-control" >
+      						<option value="">Selecione a Editora...</option>
+    					</select>
+					</div>
+				</div>	 
+			</div>						
+			<div class="row">
+				<div class="control-group col-md-1">
+					<label class="control-label">Edição:</label>
+					<div class="controls" >
+						<input type="number" ng-model="bookFormCtrl.book.edicao" class="form-control" required />
+					</div>
+				</div>	 
+			</div>	
+			
 		 	<br/>
 		 
 			<div class="form-actions">
 				<button type="submit" class="btn btn-success">Salvar</button>
-				<a href="#/" class="btn btn-default">Voltar</a> 
-				<a ng-show="votingCadastreCtrl.voting.id > 0" class="btn btn-info" href="#/votacao_livro/votacao/{{votingCadastreCtrl.voting.id}}/add/livro">Add Livro</a>
-				
-				<a ng-show="votingCadastreCtrl.voting.id > 0" ng-click="votingCadastreCtrl.del(votingCadastreCtrl.voting)" class="btn btn-danger pull-right" >Excluir Votação</a>  
+				<a href="#/" class="btn btn-default">Voltar</a>
+				<a ng-show="bookFormCtrl.book.id > 0" ng-click="bookFormCtrl.del(bookFormCtrl.book)" class="btn btn-danger pull-right" >Excluir Votação</a>  
 			</div>
 				 
 		 </form>

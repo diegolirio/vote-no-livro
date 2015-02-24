@@ -71,6 +71,8 @@
 		<!-- book -->
 		<script src="${pageContext.request.contextPath}/static/core/js/bookController.js"></script>
 		<script src="${pageContext.request.contextPath}/static/core/js/bookService.js"></script>
+		<!-- publisherService -->
+  		<script src="${pageContext.request.contextPath}/static/core/js/publisherService.js"></script>
   
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
