@@ -19,7 +19,7 @@
 	 		
 	 		<div ng-show="bookFormCtrl.book.id > 0" class="row">
 				<div class="control-group col-md-2">
-					<img ng-src="{{bookFormCtrl.book.imgUrl}}">
+					<img ng-src="{{bookFormCtrl.book.imgUrl == null ? '${pageContext.request.contextPath}/static/core/img/sem-foto.jpg' : bookFormCtrl.book.imgUrl}}">
 					<a href="#/livro/{{bookFormCtrl.book.id}}/upImagem" onclick="show_window(this.href); return false;" class="btn btn-default">{{bookFormCtrl.book.imgUrl == null ? 'Enviar' : 'Alterar'}} Imagem do Livro</a>
 				</div>	 
 			</div>	 		
@@ -29,7 +29,7 @@
 					<label class="control-label">ID:</label>
 					<div class="controls" >
 						<input type="text" ng-model="bookFormCtrl.book.id" class="form-control" disabled />
-					</div>
+					</div> 
 				</div>	 
 			</div>
 			<div class="row">
