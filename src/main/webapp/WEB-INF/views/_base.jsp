@@ -73,7 +73,8 @@
 		<script src="${pageContext.request.contextPath}/static/core/js/bookService.js"></script>
 		<!-- publisherService -->
   		<script src="${pageContext.request.contextPath}/static/core/js/publisherService.js"></script>
-  
+  		
+  		
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- jQuery UI 1.10.3 -->
@@ -107,6 +108,14 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="${pageContext.request.contextPath}/static/adminlte-master/js/AdminLTE/demo.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+			function show_window(url, alt, larg) {
+				w = window.open(url, 
+								'', 
+								'height=550, width=750, top=150, left=250, scrollbars=no, resizable=no');								
+			}  
+		</script>
 
     </body>
 </html>

@@ -37,6 +37,8 @@ app.controller('UserController', ['$scope', 'UserService',
 		
 	var self = this;
 	
+	$scope.setHideMenu(true);
+	
 	self.login = function(user) {
 		//$scope.showLoader();
 		UserService.login(user).then(function(resp) {

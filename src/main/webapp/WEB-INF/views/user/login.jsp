@@ -23,9 +23,13 @@
                 <div class="footer">                                                               
                     <button type="submit" class="btn bg-olive btn-block">Entrar</button>  
                     
-                    <p><a href="#/usuario/esqueci_a_senha">Esqueci a senha</a></p>
-                    
-                    <a href="#/usuario/cadastro" class="text-center">Criar nova conta</a>
+                    <div class="row">
+                    	<a href="#/usuario/esqueci_a_senha">Esqueci a senha</a>
+                    	<a href="#/usuario/cadastro" class="pull-right">Criar nova conta</a>
+                    </div>
+                    <div class="row text-center">
+                    	<a href="${pageContext.request.contextPath}" class="text-warning"><span class="glyphicon glyphicon-home"></span> Home</a>
+                    </div>
                 </div>
             </form>
         </div>

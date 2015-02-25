@@ -20,7 +20,7 @@
 	 		<div ng-show="bookFormCtrl.book.id > 0" class="row">
 				<div class="control-group col-md-2">
 					<img ng-src="{{bookFormCtrl.book.imgUrl}}">
-					<a href="#/" class="btn btn-default">{{bookFormCtrl.book.imgUrl == null ? 'Enviar' : 'Alterar'}} Imagem do Livro</a>
+					<a href="#/livro/{{bookFormCtrl.book.id}}/upImagem" onclick="show_window(this.href); return false;" class="btn btn-default">{{bookFormCtrl.book.imgUrl == null ? 'Enviar' : 'Alterar'}} Imagem do Livro</a>
 				</div>	 
 			</div>	 		
 	 		

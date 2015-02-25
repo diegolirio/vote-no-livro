@@ -23,4 +23,17 @@ app.controller('BookFormController', ['$routeParams', 'BookService', 'PublisherS
 	};
 	
 	
+}])
+
+.controller('BookUpImageController', ['$scope', '$routeParams', 'BookService', function($scope, $routeParams, BookService) {
+	
+	 $scope.setHideMenu(true);
+	 
+	 var self = this;
+	 
+	 BookService.get($routeParams.id).then(function(resp) {
+		self.book = resp.data; 
+	 });
+	 
+	
 }]);

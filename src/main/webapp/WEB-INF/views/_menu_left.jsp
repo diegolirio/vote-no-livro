@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-            <aside class="left-side sidebar-offcanvas">
+            <aside class="left-side sidebar-offcanvas" ng-hide="hideMenu">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
 	                    <!-- Sidebar user panel -->
@@ -11,10 +8,10 @@
 	                            <img src="${pageContext.request.contextPath}/static/adminlte-master/img/avatar-215x215.png" class="img-circle" alt="User Image" />
 	                        </div>
 	                        <div class="pull-left info">
-	                            <p>OlÃ¡, {{userCtrl.user.nickname}}</p>
+	                            <p>Olá, {{userCtrl.user.nickname}}</p>
 	                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 	                        </div>
-	                    </div>
+	                    </div> 
                     <!-- search form -->
 <!--                     <form action="#" method="get" class="sidebar-form"> -->
 <!--                         <div class="input-group"> -->
@@ -29,18 +26,18 @@
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="#/votacao/s">
-                                <i class="fa fa-globe"></i> <span>VotaÃ§Ãµes</span> <!-- <small class="badge pull-right bg-green">novo</small> -->
+                                <i class="fa fa-globe"></i> <span>Votações</span> <!-- <small class="badge pull-right bg-green">novo</small> -->
                             </a>
                         </li>
                         <li ng-show="userCtrl.user != null">
                         	<a href="#/votacao/my">
-                        		<i class="fa fa-star-o"></i> <span>Minhas votaÃ§Ãµes</span>
+                        		<i class="fa fa-star-o"></i> <span>Minhas votações</span>
                         	</a>
                         </li>                        
                         <!-- 
                         <li>
                             <a href="pages/widgets.html">
-                                <i class="fa fa-table"></i> <span>ClassificaÃ§Ã£o</span>
+                                <i class="fa fa-table"></i> <span>Classificação</span>
                             </a>
                         </li>
                         <li>

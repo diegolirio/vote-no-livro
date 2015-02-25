@@ -70,5 +70,10 @@ public class BookController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@RequestMapping(value="/up_imagem", method=RequestMethod.GET)
+	public String pageUpImage() {
+		return "book/up-image"; 
+	}
 }
  
